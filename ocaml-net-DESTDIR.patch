@@ -1,0 +1,20 @@
+diff -ur ocamlnet-0.98.1/src/Makefile.rules ocamlnet-0.98.1.new/src/Makefile.rules
+--- ocamlnet-0.98.1/src/Makefile.rules	2005-01-30 15:27:16.000000000 +0000
++++ ocamlnet-0.98.1.new/src/Makefile.rules	2005-03-17 09:15:51.474074112 +0000
+@@ -87,13 +87,13 @@
+ 
+ .PHONY: install-conventional
+ install-conventional:
+-	test -n $(LIBDIR)
+-	mkdir -p $(LIBDIR)
++	test -n $(DESTDIR)$(LIBDIR)
++	mkdir -p $(DESTDIR)$(LIBDIR)
+ 	touch packlist-$(PKGNAME)
+ 	files=`$(COLLECT_FILES) *.mli *.cmi *.cma *.cmxa *.a META $(INSTALL_EXTRA) packlist-$(PKGNAME)` && \
+ 	ls $$files | \
+ 		{ while read f; do echo "$(LIBDIR)/$$f"; done } >packlist-$(PKGNAME) && \
+-	cp $$files $(LIBDIR)
++	cp $$files $(DESTDIR)$(LIBDIR)
+ 
+ 
+ # Note: Before ocamlnet 0.96, the packlist contained only relative path
