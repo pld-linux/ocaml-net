@@ -1,11 +1,12 @@
 Summary:	Modules for Internet programming in OCaml
 Summary(pl):	Modu³y u³atwiaj±ce pisanie programów internetowych w OCamlu
 Name:		ocaml-net
-Version:	0.92
-Release:	2
+Version:	0.95
+Release:	1
 License:	BSD
 Group:		Libraries
 URL:		http://ocamlnet.sourceforge.net/
+# Source0-md5:	a5c63db289734db78df4dbf4be580688
 Source0:	http://telia.dl.sourceforge.net/sourceforge/ocamlnet/ocamlnet-%{version}.tar.gz
 BuildRequires:	ocaml-pcre-devel
 BuildRequires:	ocaml-findlib
@@ -84,19 +85,21 @@ mv -f Makefile.rules.tmp Makefile.rules
 %install
 rm -rf $RPM_BUILD_ROOT
 
+install -d $RPM_BUILD_ROOT%{_libdir}/ocaml
+
 cd src
+%{__make} install OCAMLFIND_DESTDIR=$RPM_BUILD_ROOT%{_libdir}/ocaml
+
 for f in cgi pop netstring ; do
-	%{__make} -C $f install \
-		INSTMETHOD=conventional \
-		LIBDIR=$RPM_BUILD_ROOT%{_libdir}/ocaml/$f
 	install -d $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/$f
 	mv $RPM_BUILD_ROOT%{_libdir}/ocaml/$f/META \
-		$RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/$f
+		$RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/$f/
 	echo "directory = \"+$f\"" \
 		>> $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/$f/META
 done
 cd ..
-rm $RPM_BUILD_ROOT%{_libdir}/ocaml/*/{packlist-*,*.{o,mli}}
+# not sure about *.o
+rm $RPM_BUILD_ROOT%{_libdir}/ocaml/*/*.mli
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-{pop3,cgi}-%{version}
 cp -r examples/{cgi,jserv} $RPM_BUILD_ROOT%{_examplesdir}/%{name}-cgi-%{version}
@@ -107,7 +110,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files netstring-devel
 %defattr(644,root,root,755)
-%doc LICENSE README src/netstring/*
+%doc LICENSE README doc/intro/html
 %dir %{_libdir}/ocaml/netstring
 %{_libdir}/ocaml/netstring/*.cm[ixao]*
 %{_libdir}/ocaml/netstring/*.a
@@ -115,7 +118,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files cgi-devel
 %defattr(644,root,root,755)
-%doc LICENSE README src/cgi/*
 %dir %{_libdir}/ocaml/cgi
 %{_libdir}/ocaml/cgi/*.cm[ixao]*
 %{_libdir}/ocaml/cgi/*.a
@@ -124,7 +126,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files pop3-devel
 %defattr(644,root,root,755)
-%doc LICENSE README src/pop/*
 %dir %{_libdir}/ocaml/pop
 %{_libdir}/ocaml/pop/*.cm[ixao]*
 %{_libdir}/ocaml/pop/*.a
