@@ -13,7 +13,10 @@ BuildRequires:	ocaml >= 3.04-7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-N/a (there is no main package).
+Modules for Internet programming in OCaml.
+
+%description -l pl
+Modu³y u³atwiaj±ce pisanie programów internetowych w OCamlu.
 
 %package netstring-devel
 Summary:	String processing library
