@@ -101,14 +101,12 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-{pop3,cgi}-%{version}
 cp -r examples/{cgi,jserv} $RPM_BUILD_ROOT%{_examplesdir}/%{name}-cgi-%{version}
 cp -r examples/pop/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-pop3-%{version}
 
-gzip -9nf src/*/*.mli LICENSE README
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files netstring-devel
 %defattr(644,root,root,755)
-%doc *.gz src/netstring/*.gz
+%doc LICENSE README src/netstring/*
 %dir %{_libdir}/ocaml/netstring
 %{_libdir}/ocaml/netstring/*.cm[ixa]*
 %{_libdir}/ocaml/netstring/*.a
@@ -116,7 +114,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files cgi-devel
 %defattr(644,root,root,755)
-%doc *.gz src/cgi/*.gz
+%doc LICENSE README src/cgi/*
 %dir %{_libdir}/ocaml/cgi
 %{_libdir}/ocaml/cgi/*.cm[ixa]*
 %{_libdir}/ocaml/cgi/*.a
@@ -125,7 +123,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files pop3-devel
 %defattr(644,root,root,755)
-%doc *.gz src/pop/*.gz
+%doc LICENSE README src/pop/*
 %dir %{_libdir}/ocaml/pop
 %{_libdir}/ocaml/pop/*.cm[ixa]*
 %{_libdir}/ocaml/pop/*.a
