@@ -6,7 +6,7 @@ Release:	3
 License:	BSD
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/ocamlnet/ocamlnet-%{version}.tar.gz
-# Source0-md5:	991a004ab8137b50eb42d035570250a4
+# Source0-md5:	a5c63db289734db78df4dbf4be580688
 URL:		http://ocamlnet.sourceforge.net/
 BuildRequires:	ocaml-pcre-devel
 BuildRequires:	ocaml-findlib
