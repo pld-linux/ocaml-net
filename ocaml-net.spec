@@ -2,7 +2,7 @@ Summary:	Modules for Internet programming in OCaml
 Summary(pl):	Modu³y u³atwiaj±ce pisanie programów internetowych w OCamlu
 Name:		ocaml-net
 Version:	0.92
-Release:	1
+Release:	2
 License:	BSD
 Group:		Libraries
 URL:		http://ocamlnet.sourceforge.net/
@@ -96,6 +96,7 @@ for f in cgi pop netstring ; do
 		>> $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/$f/META
 done
 cd ..
+rm $RPM_BUILD_ROOT%{_libdir}/ocaml/*/{packlist-*,*.{o,mli}}
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-{pop3,cgi}-%{version}
 cp -r examples/{cgi,jserv} $RPM_BUILD_ROOT%{_examplesdir}/%{name}-cgi-%{version}
@@ -108,7 +109,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc LICENSE README src/netstring/*
 %dir %{_libdir}/ocaml/netstring
-%{_libdir}/ocaml/netstring/*.cm[ixa]*
+%{_libdir}/ocaml/netstring/*.cm[ixao]*
 %{_libdir}/ocaml/netstring/*.a
 %{_libdir}/ocaml/site-lib/netstring
 
@@ -116,7 +117,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc LICENSE README src/cgi/*
 %dir %{_libdir}/ocaml/cgi
-%{_libdir}/ocaml/cgi/*.cm[ixa]*
+%{_libdir}/ocaml/cgi/*.cm[ixao]*
 %{_libdir}/ocaml/cgi/*.a
 %{_libdir}/ocaml/site-lib/cgi
 %{_examplesdir}/%{name}-cgi-%{version}
@@ -125,7 +126,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc LICENSE README src/pop/*
 %dir %{_libdir}/ocaml/pop
-%{_libdir}/ocaml/pop/*.cm[ixa]*
+%{_libdir}/ocaml/pop/*.cm[ixao]*
 %{_libdir}/ocaml/pop/*.a
 %{_libdir}/ocaml/site-lib/pop
 %{_examplesdir}/%{name}-pop3-%{version}
