@@ -8,6 +8,7 @@ Group:		Libraries
 Source0:	http://dl.sourceforge.net/ocamlnet/ocamlnet-%{version}.tar.gz
 # Source0-md5:	a5c63db289734db78df4dbf4be580688
 URL:		http://ocamlnet.sourceforge.net/
+BuildRequires:	ncurses-devel
 BuildRequires:	ocaml-pcre-devel
 BuildRequires:	ocaml-findlib
 BuildRequires:	ocaml >= 3.04-7
