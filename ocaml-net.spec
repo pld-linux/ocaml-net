@@ -1,12 +1,12 @@
 Summary:	Modules for Internet programming in OCaml
 Summary(pl):	Modu³y u³atwiaj±ce pisanie programów internetowych w OCamlu
 Name:		ocaml-net
-Version:	0.95
-Release:	3
+Version:	1.1
+Release:	1
 License:	BSD
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/ocamlnet/ocamlnet-%{version}.tar.gz
-# Source0-md5:	a5c63db289734db78df4dbf4be580688
+# Source0-md5:	2ec265aeea6a6470e7493ab047cef261
 URL:		http://ocamlnet.sourceforge.net/
 BuildRequires:	ncurses-devel
 BuildRequires:	ocaml-pcre-devel
