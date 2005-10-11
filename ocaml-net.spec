@@ -3,7 +3,7 @@ Summary(pl):	Modu³y u³atwiaj±ce pisanie programów internetowych w OCamlu
 Name:		ocaml-net
 Version:	1.1
 Release:	1
-License:	BSD
+License:	GPL v2
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/ocamlnet/ocamlnet-%{version}.tar.gz
 # Source0-md5:	2ec265aeea6a6470e7493ab047cef261
