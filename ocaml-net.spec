@@ -9,9 +9,10 @@ Source0:	http://dl.sourceforge.net/ocamlnet/ocamlnet-%{version}.tar.gz
 # Source0-md5:	2ec265aeea6a6470e7493ab047cef261
 URL:		http://ocamlnet.sourceforge.net/
 BuildRequires:	ncurses-devel
-BuildRequires:	ocaml-pcre-devel
-BuildRequires:	ocaml-findlib
 BuildRequires:	ocaml >= 3.04-7
+BuildRequires:	ocaml-equeue
+BuildRequires:	ocaml-findlib
+BuildRequires:	ocaml-pcre-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
