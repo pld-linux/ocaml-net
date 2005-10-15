@@ -7,6 +7,7 @@ License:	GPL v2
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/ocamlnet/ocamlnet-%{version}.tar.gz
 # Source0-md5:	2ec265aeea6a6470e7493ab047cef261
+Patch0:		ocaml-net-Makefile.patch
 URL:		http://ocamlnet.sourceforge.net/
 BuildRequires:	ncurses-devel
 BuildRequires:	ocaml >= 3.04-7
@@ -70,6 +71,7 @@ pliki niezbêdne do tworzenia programów u¿ywaj±cych tej biblioteki.
 
 %prep
 %setup -q -n ocamlnet-%{version}
+%patch0 -p1
 
 %build
 cd src
@@ -112,7 +114,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files netstring-devel
 %defattr(644,root,root,755)
-%doc LICENSE README doc/intro/html
+%doc LICENSE README doc/html
 %dir %{_libdir}/ocaml/netstring
 %{_libdir}/ocaml/netstring/*.cm[ixao]*
 %{_libdir}/ocaml/netstring/*.a
