@@ -1,3 +1,7 @@
+# TODO:
+# - nethttpd needs to be packaged
+# - add pl to -smtp
+#
 Summary:	Modules for Internet programming in OCaml
 Summary(pl):	Modu³y u³atwiaj±ce pisanie programów internetowych w OCamlu
 Name:		ocaml-net
@@ -38,6 +42,8 @@ Biblioteka do przetwarzania napisów, czê¶æ pakietu Ocamlnet. Pakiet
 ten zawiera pliki niezbêdne do tworzenia programów u¿ywaj±cych tej
 biblioteki.
 
+#%package nethttpd-devel
+
 %package cgi-devel
 Summary:	Common Gateway Interface library
 Summary(pl):	Biblioteka do tworzenia skryptów CGI
@@ -68,6 +74,16 @@ contains files needed to develop OCaml programs using this library.
 %description pop3-devel -l pl
 Biblioteka do obs³ugi POP3, czê¶æ pakietu Ocamlnet. Pakiet ten zawiera
 pliki niezbêdne do tworzenia programów u¿ywaj±cych tej biblioteki.
+
+%package smtp-devel
+Summary:        Simple Mail Transfer Protocol (SMTP) library
+Summary(pl):    Biblioteka do obs³ugi SMTP
+Group:          Development/Libraries
+Requires:       %{name}-netstring-devel = %{version}-%{release}
+%requires_eq    ocaml
+
+%description smtp-devel
+Interface for the Simple Mail Tranfer Protocol (SMTP) as specified by RFC 2821.
 
 %prep
 %setup -q -n ocamlnet-%{version}
@@ -112,12 +128,21 @@ cp -r examples/pop/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-pop3-%{version}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+#%files nethttpd-devel
+#%defattr(644,root,root,755)
+#%doc LICENSE README doc/html
+#%dir %{_libdir}/ocaml/nethttpd
+#%{_libdir}/ocaml/nethttpd/*.cm[ixao]*
+#%{_libdir}/ocaml/nethttpd/*.a
+#%{_libdir}/ocaml/nethttpd/*.o
+
 %files netstring-devel
 %defattr(644,root,root,755)
 %doc LICENSE README doc/html
 %dir %{_libdir}/ocaml/netstring
 %{_libdir}/ocaml/netstring/*.cm[ixao]*
 %{_libdir}/ocaml/netstring/*.a
+%{_libdir}/ocaml/netstring/*.o
 %{_libdir}/ocaml/site-lib/netstring
 
 %files cgi-devel
@@ -135,3 +160,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/ocaml/pop/*.a
 %{_libdir}/ocaml/site-lib/pop
 %{_examplesdir}/%{name}-pop3-%{version}
+
+%files smtp-devel
+%defattr(644,root,root,755)
+%dir %{_libdir}/ocaml/smtp
+%{_libdir}/ocaml/smtp/*.cm[ixao]*
+%{_libdir}/ocaml/smtp/*.a
