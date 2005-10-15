@@ -90,7 +90,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_libdir}/ocaml
 
 cd src
-%{__make} install OCAMLFIND_DESTDIR=$RPM_BUILD_ROOT%{_libdir}/ocaml
+%{__make} -j1 install OCAMLFIND_DESTDIR=$RPM_BUILD_ROOT%{_libdir}/ocaml
 
 for f in cgi pop netstring ; do
 	install -d $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/$f
