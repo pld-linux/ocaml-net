@@ -14,7 +14,7 @@ Patch0:		ocaml-net-Makefile.patch
 URL:		http://ocamlnet.sourceforge.net/
 BuildRequires:	ncurses-devel
 BuildRequires:	ocaml >= 3.04-7
-BuildRequires:	ocaml-equeue-devel
+BuildRequires:	ocaml-equeue-devel >= 2.1.4
 BuildRequires:	ocaml-findlib
 BuildRequires:	ocaml-pcre-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
