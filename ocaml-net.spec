@@ -1,6 +1,5 @@
 # TODO:
 # - nethttpd needs to be packaged
-# - add pl to -smtp
 #
 Summary:	Modules for Internet programming in OCaml
 Summary(pl):	Modu³y u³atwiaj±ce pisanie programów internetowych w OCamlu
@@ -84,6 +83,9 @@ Requires:       %{name}-netstring-devel = %{version}-%{release}
 
 %description smtp-devel
 Interface for the Simple Mail Tranfer Protocol (SMTP) as specified by RFC 2821.
+
+%description smtp-devel -l pl
+Interfejs dla protoko³u SMTP wyszczególniony w RFC 2821.
 
 %prep
 %setup -q -n ocamlnet-%{version}
