@@ -5,7 +5,7 @@ Summary:	Modules for Internet programming in OCaml
 Summary(pl):	Modu³y u³atwiaj±ce pisanie programów internetowych w OCamlu
 Name:		ocaml-net
 Version:	1.1
-Release:	2
+Release:	3
 License:	GPL v2
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/ocamlnet/ocamlnet-%{version}.tar.gz
@@ -25,6 +25,17 @@ Modules for Internet programming in OCaml.
 %description -l pl
 Modu³y u³atwiaj±ce pisanie programów internetowych w OCamlu.
 
+%package doc
+Summary:	ocaml-net documentation
+Summary(pl):	Dokumentacja dla pakietów ocaml-net
+Group:		Development/Libraries
+
+%description doc
+ocaml-net documentation
+
+%description doc -l pl
+Dokumentacja dla pakietów ocaml-net
+
 %package netstring-devel
 Summary:	String processing library
 Summary(pl):	Biblioteka do przetwarzania napisów
@@ -41,7 +52,22 @@ Biblioteka do przetwarzania napisów, czê¶æ pakietu Ocamlnet. Pakiet
 ten zawiera pliki niezbêdne do tworzenia programów u¿ywaj±cych tej
 biblioteki.
 
-#%package nethttpd-devel
+%package nethttpd-devel
+Summary:	HTTPd library
+Summary(pl):	Biblioteka do obs³ugi protoko³u HTTP
+Group:		Development/Libraries
+%requires_eq	ocaml-pcre-devel
+%requires_eq	ocaml
+
+%description nethttpd-devel
+HTTPd library, part of Ocamlnet. This package contains
+files needed to develop OCaml programs using this library.
+
+%description nethttpd-devel -l pl
+Biblioteka do obs³ugi protoko³u HTTP, czê¶æ pakietu Ocamlnet. Pakiet
+ten zawiera pliki niezbêdne do tworzenia programów u¿ywaj±cych tej
+biblioteki.
+
 
 %package cgi-devel
 Summary:	Common Gateway Interface library
@@ -96,9 +122,12 @@ cd src
 # no %%configure, please
 ./configure \
 	-enable-findlib \
+	-enable-compatcgi \
 	-with-netstring \
+	-with-nethttpd \
 	-with-cgi \
-        -with-pop
+        -with-pop \
+        -with-smtp
 
 sed -e 's/-g//' Makefile.rules > Makefile.rules.tmp
 mv -f Makefile.rules.tmp Makefile.rules
@@ -110,9 +139,11 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_libdir}/ocaml
 
 cd src
-%{__make} -j1 install OCAMLFIND_DESTDIR=$RPM_BUILD_ROOT%{_libdir}/ocaml
+%{__make} -j1 install \
+	OCAMLFIND_DESTDIR=$RPM_BUILD_ROOT%{_libdir}/ocaml \
+	DESTDIR=$RPM_BUILD_ROOT
 
-for f in cgi pop netstring ; do
+for f in smtp cgi pop netstring nethttpd; do
 	install -d $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/$f
 	mv $RPM_BUILD_ROOT%{_libdir}/ocaml/$f/META \
 		$RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/$f/
@@ -123,28 +154,33 @@ cd ..
 # not sure about *.o
 rm $RPM_BUILD_ROOT%{_libdir}/ocaml/*/*.mli
 
-install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-{pop3,cgi}-%{version}
-cp -r examples/{cgi,jserv} $RPM_BUILD_ROOT%{_examplesdir}/%{name}-cgi-%{version}
+install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-{pop3,cgi,nethttpd}-%{version}
+cp -r examples/{*cgi,jserv} $RPM_BUILD_ROOT%{_examplesdir}/%{name}-cgi-%{version}
 cp -r examples/pop/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-pop3-%{version}
+cp -r examples/nethttpd/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-nethttpd-%{version}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-#%files nethttpd-devel
-#%defattr(644,root,root,755)
-#%doc LICENSE README doc/html
-#%dir %{_libdir}/ocaml/nethttpd
-#%{_libdir}/ocaml/nethttpd/*.cm[ixao]*
-#%{_libdir}/ocaml/nethttpd/*.a
-#%{_libdir}/ocaml/nethttpd/*.o
+%files doc
+%defattr(644,root,root,755)
+%doc LICENSE README doc/html
+
+%files nethttpd-devel
+%defattr(644,root,root,755)
+%dir %{_libdir}/ocaml/nethttpd
+%{_libdir}/ocaml/nethttpd/*.cm[ixao]*
+%{_libdir}/ocaml/nethttpd/*.a
+%{_libdir}/ocaml/site-lib/nethttpd
+%{_examplesdir}/%{name}-nethttpd-%{version}
 
 %files netstring-devel
 %defattr(644,root,root,755)
-%doc LICENSE README doc/html
 %dir %{_libdir}/ocaml/netstring
 %{_libdir}/ocaml/netstring/*.cm[ixao]*
 %{_libdir}/ocaml/netstring/*.a
 %{_libdir}/ocaml/netstring/*.o
+%attr(755,root,root) %{_libdir}/ocaml/netstring/*.so
 %{_libdir}/ocaml/site-lib/netstring
 
 %files cgi-devel
@@ -168,3 +204,4 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/ocaml/smtp
 %{_libdir}/ocaml/smtp/*.cm[ixao]*
 %{_libdir}/ocaml/smtp/*.a
+%{_libdir}/ocaml/site-lib/smtp
