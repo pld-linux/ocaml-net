@@ -5,7 +5,7 @@
  .PHONY: mk_netdb
  mk_netdb: tools_done netmappings_iso.pmap netmappings_other.pmap netmappings_jp.pmap
 -	mkdir -p netdb
-+	mkdir -p $(OCAMLFIND_DESTDIR)netdb
++	mkdir -p $(DESTDIR)netdb
  	cd netdb && \
  		../tools/unimap_to_ocaml/unimap_to_ocaml -netdb ../*.pmap
  
@@ -15,8 +15,8 @@
  install-netdb:
 -	mkdir -p $(NET_DB_DIR)
 -	cp netdb/*.netdb $(NET_DB_DIR)
-+	mkdir -p $(OCAMLFIND_DESTDIR)$(NET_DB_DIR)
-+	cp netdb/*.netdb $(OCAMLFIND_DESTDIR)$(NET_DB_DIR)
++	mkdir -p $(DESTDIR)$(NET_DB_DIR)
++	cp netdb/*.netdb $(DESTDIR)$(NET_DB_DIR)
  	@echo "Installed .netdb files into $(NET_DB_DIR)"
  	if [ "$(INSTMETHOD)" != "findlib" ]; then                     \
  		cat netdb-packlist >>$(LIBDIR)/packlist-$(PKGNAME);   \
