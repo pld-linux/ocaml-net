@@ -31,10 +31,10 @@ Summary(pl):	Dokumentacja dla pakietów ocaml-net
 Group:		Development/Libraries
 
 %description doc
-ocaml-net documentation
+ocaml-net documentation.
 
 %description doc -l pl
-Dokumentacja dla pakietów ocaml-net
+Dokumentacja dla pakietów ocaml-net.
 
 %package netstring-devel
 Summary:	String processing library
@@ -60,14 +60,13 @@ Group:		Development/Libraries
 %requires_eq	ocaml
 
 %description nethttpd-devel
-HTTPd library, part of Ocamlnet. This package contains
-files needed to develop OCaml programs using this library.
+HTTPd library, part of Ocamlnet. This package contains the files
+needed to develop OCaml programs using this library.
 
 %description nethttpd-devel -l pl
 Biblioteka do obs³ugi protoko³u HTTP, czê¶æ pakietu Ocamlnet. Pakiet
 ten zawiera pliki niezbêdne do tworzenia programów u¿ywaj±cych tej
 biblioteki.
-
 
 %package cgi-devel
 Summary:	Common Gateway Interface library
