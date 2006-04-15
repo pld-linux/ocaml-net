@@ -1,19 +1,20 @@
 # TODO:
 # - nethttpd needs to be packaged
 #
+%define		ocaml_ver	3.09.1
 Summary:	Modules for Internet programming in OCaml
 Summary(pl):	Modu³y u³atwiaj±ce pisanie programów internetowych w OCamlu
 Name:		ocaml-net
 Version:	1.1.1
-Release:	2
+Release:	3
 License:	GPL v2
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/ocamlnet/ocamlnet-%{version}.tar.gz
 # Source0-md5:	4347d04ae16e69b61940f8679eeeef07
-Patch0:		ocaml-net-Makefile.patch
+Patch0:		%{name}-Makefile.patch
 URL:		http://ocamlnet.sourceforge.net/
 BuildRequires:	ncurses-devel
-BuildRequires:	ocaml >= 3.04-7
+BuildRequires:	ocaml >= %{ocaml_ver}
 BuildRequires:	ocaml-equeue-devel >= 2.1.4
 BuildRequires:	ocaml-findlib
 BuildRequires:	ocaml-pcre-devel
@@ -100,14 +101,15 @@ Biblioteka do obs³ugi POP3, czê¶æ pakietu Ocamlnet. Pakiet ten zawiera
 pliki niezbêdne do tworzenia programów u¿ywaj±cych tej biblioteki.
 
 %package smtp-devel
-Summary:        Simple Mail Transfer Protocol (SMTP) library
-Summary(pl):    Biblioteka do obs³ugi SMTP
-Group:          Development/Libraries
-Requires:       %{name}-netstring-devel = %{version}-%{release}
+Summary:	Simple Mail Transfer Protocol (SMTP) library
+Summary(pl):	Biblioteka do obs³ugi SMTP
+Group:		Development/Libraries
+Requires:	%{name}-netstring-devel = %{version}-%{release}
 %requires_eq    ocaml
 
 %description smtp-devel
-Interface for the Simple Mail Tranfer Protocol (SMTP) as specified by RFC 2821.
+Interface for the Simple Mail Tranfer Protocol (SMTP) as specified by
+RFC 2821.
 
 %description smtp-devel -l pl
 Interfejs dla protoko³u SMTP wyszczególniony w RFC 2821.
