@@ -1,12 +1,12 @@
 # TODO:
 # - nethttpd needs to be packaged
 #
-%define		ocaml_ver	1:3.09.1
+%define		ocaml_ver	1:3.09.2
 Summary:	Modules for Internet programming in OCaml
 Summary(pl):	Modu³y u³atwiaj±ce pisanie programów internetowych w OCamlu
 Name:		ocaml-net
 Version:	1.1.1
-Release:	4
+Release:	5
 License:	GPL v2
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/ocamlnet/ocamlnet-%{version}.tar.gz
