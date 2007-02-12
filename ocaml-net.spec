@@ -3,7 +3,7 @@
 #
 %define		ocaml_ver	1:3.09.2
 Summary:	Modules for Internet programming in OCaml
-Summary(pl):	Modu³y u³atwiaj±ce pisanie programów internetowych w OCamlu
+Summary(pl.UTF-8):   ModuÅ‚y uÅ‚atwiajÄ…ce pisanie programÃ³w internetowych w OCamlu
 Name:		ocaml-net
 Version:	1.1.1
 Release:	5
@@ -23,23 +23,23 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Modules for Internet programming in OCaml.
 
-%description -l pl
-Modu³y u³atwiaj±ce pisanie programów internetowych w OCamlu.
+%description -l pl.UTF-8
+ModuÅ‚y uÅ‚atwiajÄ…ce pisanie programÃ³w internetowych w OCamlu.
 
 %package doc
 Summary:	ocaml-net documentation
-Summary(pl):	Dokumentacja dla pakietów ocaml-net
+Summary(pl.UTF-8):   Dokumentacja dla pakietÃ³w ocaml-net
 Group:		Development/Libraries
 
 %description doc
 ocaml-net documentation.
 
-%description doc -l pl
-Dokumentacja dla pakietów ocaml-net.
+%description doc -l pl.UTF-8
+Dokumentacja dla pakietÃ³w ocaml-net.
 
 %package netstring-devel
 Summary:	String processing library
-Summary(pl):	Biblioteka do przetwarzania napisów
+Summary(pl.UTF-8):   Biblioteka do przetwarzania napisÃ³w
 Group:		Development/Libraries
 %requires_eq	ocaml-pcre-devel
 %requires_eq	ocaml
@@ -48,14 +48,14 @@ Group:		Development/Libraries
 String processing library, part of Ocamlnet. This package contains
 files needed to develop OCaml programs using this library.
 
-%description netstring-devel -l pl
-Biblioteka do przetwarzania napisów, czê¶æ pakietu Ocamlnet. Pakiet
-ten zawiera pliki niezbêdne do tworzenia programów u¿ywaj±cych tej
+%description netstring-devel -l pl.UTF-8
+Biblioteka do przetwarzania napisÃ³w, czÄ™Å›Ä‡ pakietu Ocamlnet. Pakiet
+ten zawiera pliki niezbÄ™dne do tworzenia programÃ³w uÅ¼ywajÄ…cych tej
 biblioteki.
 
 %package nethttpd-devel
 Summary:	HTTPd library
-Summary(pl):	Biblioteka do obs³ugi protoko³u HTTP
+Summary(pl.UTF-8):   Biblioteka do obsÅ‚ugi protokoÅ‚u HTTP
 Group:		Development/Libraries
 %requires_eq	ocaml-pcre-devel
 %requires_eq	ocaml
@@ -64,14 +64,14 @@ Group:		Development/Libraries
 HTTPd library, part of Ocamlnet. This package contains the files
 needed to develop OCaml programs using this library.
 
-%description nethttpd-devel -l pl
-Biblioteka do obs³ugi protoko³u HTTP, czê¶æ pakietu Ocamlnet. Pakiet
-ten zawiera pliki niezbêdne do tworzenia programów u¿ywaj±cych tej
+%description nethttpd-devel -l pl.UTF-8
+Biblioteka do obsÅ‚ugi protokoÅ‚u HTTP, czÄ™Å›Ä‡ pakietu Ocamlnet. Pakiet
+ten zawiera pliki niezbÄ™dne do tworzenia programÃ³w uÅ¼ywajÄ…cych tej
 biblioteki.
 
 %package cgi-devel
 Summary:	Common Gateway Interface library
-Summary(pl):	Biblioteka do tworzenia skryptów CGI
+Summary(pl.UTF-8):   Biblioteka do tworzenia skryptÃ³w CGI
 Group:		Development/Libraries
 Requires:	%{name}-netstring-devel = %{version}-%{release}
 %requires_eq	ocaml
@@ -80,14 +80,14 @@ Requires:	%{name}-netstring-devel = %{version}-%{release}
 Common Gateway Interface library, part of Ocamlnet. This package
 contains files needed to develop OCaml programs using this library.
 
-%description cgi-devel -l pl
-Biblioteka do tworzenia skryptów CGI, czê¶æ pakietu Ocamlnet. Pakiet
-ten zawiera pliki niezbêdne do tworzenia programów u¿ywaj±cych tej
+%description cgi-devel -l pl.UTF-8
+Biblioteka do tworzenia skryptÃ³w CGI, czÄ™Å›Ä‡ pakietu Ocamlnet. Pakiet
+ten zawiera pliki niezbÄ™dne do tworzenia programÃ³w uÅ¼ywajÄ…cych tej
 biblioteki.
 
 %package pop3-devel
 Summary:	Post Office Protocol (POP3) library
-Summary(pl):	Biblioteka do obs³ugi POP3
+Summary(pl.UTF-8):   Biblioteka do obsÅ‚ugi POP3
 Group:		Development/Libraries
 Requires:	%{name}-netstring-devel = %{version}-%{release}
 %requires_eq	ocaml
@@ -96,13 +96,13 @@ Requires:	%{name}-netstring-devel = %{version}-%{release}
 Post Office Protocol (POP3) library, part of Ocamlnet. This package
 contains files needed to develop OCaml programs using this library.
 
-%description pop3-devel -l pl
-Biblioteka do obs³ugi POP3, czê¶æ pakietu Ocamlnet. Pakiet ten zawiera
-pliki niezbêdne do tworzenia programów u¿ywaj±cych tej biblioteki.
+%description pop3-devel -l pl.UTF-8
+Biblioteka do obsÅ‚ugi POP3, czÄ™Å›Ä‡ pakietu Ocamlnet. Pakiet ten zawiera
+pliki niezbÄ™dne do tworzenia programÃ³w uÅ¼ywajÄ…cych tej biblioteki.
 
 %package smtp-devel
 Summary:	Simple Mail Transfer Protocol (SMTP) library
-Summary(pl):	Biblioteka do obs³ugi SMTP
+Summary(pl.UTF-8):   Biblioteka do obsÅ‚ugi SMTP
 Group:		Development/Libraries
 Requires:	%{name}-netstring-devel = %{version}-%{release}
 %requires_eq    ocaml
@@ -111,8 +111,8 @@ Requires:	%{name}-netstring-devel = %{version}-%{release}
 Interface for the Simple Mail Tranfer Protocol (SMTP) as specified by
 RFC 2821.
 
-%description smtp-devel -l pl
-Interfejs dla protoko³u SMTP wyszczególniony w RFC 2821.
+%description smtp-devel -l pl.UTF-8
+Interfejs dla protokoÅ‚u SMTP wyszczegÃ³lniony w RFC 2821.
 
 %prep
 %setup -q -n ocamlnet-%{version}
