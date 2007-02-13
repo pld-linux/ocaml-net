@@ -3,7 +3,7 @@
 #
 %define		ocaml_ver	1:3.09.2
 Summary:	Modules for Internet programming in OCaml
-Summary(pl.UTF-8):   Moduły ułatwiające pisanie programów internetowych w OCamlu
+Summary(pl.UTF-8):	Moduły ułatwiające pisanie programów internetowych w OCamlu
 Name:		ocaml-net
 Version:	1.1.1
 Release:	5
@@ -28,7 +28,7 @@ Moduły ułatwiające pisanie programów internetowych w OCamlu.
 
 %package doc
 Summary:	ocaml-net documentation
-Summary(pl.UTF-8):   Dokumentacja dla pakietów ocaml-net
+Summary(pl.UTF-8):	Dokumentacja dla pakietów ocaml-net
 Group:		Development/Libraries
 
 %description doc
@@ -39,7 +39,7 @@ Dokumentacja dla pakietów ocaml-net.
 
 %package netstring-devel
 Summary:	String processing library
-Summary(pl.UTF-8):   Biblioteka do przetwarzania napisów
+Summary(pl.UTF-8):	Biblioteka do przetwarzania napisów
 Group:		Development/Libraries
 %requires_eq	ocaml-pcre-devel
 %requires_eq	ocaml
@@ -55,7 +55,7 @@ biblioteki.
 
 %package nethttpd-devel
 Summary:	HTTPd library
-Summary(pl.UTF-8):   Biblioteka do obsługi protokołu HTTP
+Summary(pl.UTF-8):	Biblioteka do obsługi protokołu HTTP
 Group:		Development/Libraries
 %requires_eq	ocaml-pcre-devel
 %requires_eq	ocaml
@@ -71,7 +71,7 @@ biblioteki.
 
 %package cgi-devel
 Summary:	Common Gateway Interface library
-Summary(pl.UTF-8):   Biblioteka do tworzenia skryptów CGI
+Summary(pl.UTF-8):	Biblioteka do tworzenia skryptów CGI
 Group:		Development/Libraries
 Requires:	%{name}-netstring-devel = %{version}-%{release}
 %requires_eq	ocaml
@@ -87,7 +87,7 @@ biblioteki.
 
 %package pop3-devel
 Summary:	Post Office Protocol (POP3) library
-Summary(pl.UTF-8):   Biblioteka do obsługi POP3
+Summary(pl.UTF-8):	Biblioteka do obsługi POP3
 Group:		Development/Libraries
 Requires:	%{name}-netstring-devel = %{version}-%{release}
 %requires_eq	ocaml
@@ -102,7 +102,7 @@ pliki niezbędne do tworzenia programów używających tej biblioteki.
 
 %package smtp-devel
 Summary:	Simple Mail Transfer Protocol (SMTP) library
-Summary(pl.UTF-8):   Biblioteka do obsługi SMTP
+Summary(pl.UTF-8):	Biblioteka do obsługi SMTP
 Group:		Development/Libraries
 Requires:	%{name}-netstring-devel = %{version}-%{release}
 %requires_eq    ocaml
