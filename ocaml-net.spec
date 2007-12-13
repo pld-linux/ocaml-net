@@ -8,7 +8,7 @@ Summary:	Modules for Internet programming in OCaml
 Summary(pl.UTF-8):	Moduły ułatwiające pisanie programów internetowych w OCamlu
 Name:		ocaml-net
 Version:	2.2.9
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/ocamlnet/ocamlnet-%{version}.tar.gz
@@ -108,7 +108,7 @@ Summary:	Equeue SSL support - development part
 Summary(pl.UTF-8):	Wsparcie dla SSL-a w equeue - cześć programistyczna
 Group:		Development/Libraries
 Requires:	%{name}-equeue-devel = %{version}-%{release}
-Requires:	%{name}-ssl = %{version}-%{release}
+Requires:	%{name}-equeue-ssl = %{version}-%{release}
 %requires_eq	ocaml-ssl-devel
 %requires_eq	ocaml
 
