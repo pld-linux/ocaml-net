@@ -1,0 +1,3 @@
+- Release: 2
+- %install and %files changed, so rpm doesn't complain about unlisted files
+- *.cmo included in the package, as they are needed for linking some programs
