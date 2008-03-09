@@ -52,12 +52,12 @@ Requires:	%{name}-netsys-devel = %{version}-%{release}
 
 %description cgi-devel
 Common Gateway Interface library, part of Ocamlnet. This package
-contains files needed to develop OCaml programs using this library.
+contains files needed to develop OCaml programs using netcgi library.
 
 %description cgi-devel -l pl.UTF-8
-Biblioteka do tworzenia skryptów CGI, część pakietu Ocamlnet. Pakiet
-ten zawiera pliki niezbędne do tworzenia programów używających tej
-biblioteki.
+Biblioteka do tworzenia skryptów CGI, część pakietu Ocamlnet. Ten
+pakiet zawiera pliki niezbędne do tworzenia programów używających
+biblioteki netcgi.
 
 %package equeue-devel
 Summary:	Event queue library for OCaml
@@ -66,22 +66,20 @@ Group:		Development/Libraries
 Requires:	%{name}-netsys-devel = %{version}-%{release}
 %requires_eq	ocaml
 Obsoletes:	ocaml-equeue-devel
-Obsoletes:	ocaml-equeue-tcl
-Obsoletes:	ocaml-equeue-tcl-devel
 
 %description equeue-devel
 Equeue provides a generic event queue module, and a specific module
 for file descriptor events.
 
 This package contains files needed to develop OCaml programs using
-this library.
+equeue library.
 
 %description equeue-devel -l pl.UTF-8
 Equeue dostarcza ogólnego modułu obsługi kolejki zdarzeń jak również
 modułu obsługi zdarzeń na deskryptorach plików.
 
-Pakiet ten zawiera pliki niezbędne do tworzenia programów używających
-tej biblioteki.
+Ten pakiet zawiera pliki niezbędne do tworzenia programów używających
+biblioteki equeue.
 
 %package equeue-ssl
 Summary:	Event queue library for OCaml, SSL support
@@ -94,14 +92,14 @@ This package makes it possible to let Equeue cooperate with the event
 queue implementation of SSL.
 
 This package contains files needed to run bytecode executables using
-this library.
+equeue-ssl library.
 
 %description equeue-ssl -l pl.UTF-8
 Pakiet ten umożliwia współpracę Equeue z implementacją kolejki zdarzeń
 w SSL.
 
-Pakiet ten zawiera binaria potrzebne do uruchamiania programów
-używających tej biblioteki.
+Ten pakiet zawiera moduł potrzebny do uruchamiania programów
+używających biblioteki equeue-ssl.
 
 %package equeue-ssl-devel
 Summary:	Equeue SSL support - development part
@@ -117,14 +115,14 @@ This package makes it possible to let Equeue cooperate with the event
 queue implementation of SSL.
 
 This package contains files needed to develop OCaml programs using
-this library.
+equeue-ssl library.
 
 %description equeue-ssl-devel -l pl.UTF-8
 Pakiet ten umożliwia współpracę Equeue z implementacją kolejki zdarzeń
 w SSL.
 
-Pakiet ten zawiera pliki niezbędne do tworzenia programów używających
-tej biblioteki.
+Ten pakiet zawiera pliki niezbędne do tworzenia programów używających
+biblioteki equeue-ssl.
 
 %package equeue-tcl
 Summary:	Event queue library for OCaml, Tcl support
@@ -132,20 +130,21 @@ Summary(pl.UTF-8):	Biblioteka obsługująca kolejkę zdarzeń dla OCamla, wsparc
 Group:		Libraries
 %requires_eq	ocaml-runtime
 %requires_eq	ocaml-labltk
+Obsoletes:	ocaml-equeue-tcl
 
 %description equeue-tcl
 This package makes it possible to let Equeue cooperate with the event
 queue implementation of Tcl.
 
 This package contains files needed to run bytecode executables using
-this library.
+equeue-tcl library.
 
 %description equeue-tcl -l pl.UTF-8
 Pakiet ten umożliwia współpracę Equeue z implementacją kolejki zdarzeń
 w Tcl.
 
-Pakiet ten zawiera binaria potrzebne do uruchamiania programów
-używających tej biblioteki.
+Ten pakiet zawiera moduły potrzebne do uruchamiania programów
+używających biblioteki equeue-tcl.
 
 %package equeue-tcl-devel
 Summary:	Equeue Tcl support - development part
@@ -155,6 +154,7 @@ Requires:	%{name}-equeue-devel = %{version}-%{release}
 Requires:	%{name}-equeue-tcl = %{version}-%{release}
 %requires_eq	ocaml-labltk-devel
 %requires_eq	ocaml
+Obsoletes:	ocaml-equeue-tcl-devel
 
 %description equeue-tcl-devel
 This package makes it possible to let Equeue cooperate with the event
@@ -167,8 +167,8 @@ this library.
 Pakiet ten umożliwia współpracę Equeue z implementacją kolejki zdarzeń
 w Tcl.
 
-Pakiet ten zawiera pliki niezbędne do tworzenia programów używających
-tej biblioteki.
+Ten pakiet zawiera pliki niezbędne do tworzenia programów używających
+biblioteki equeue-tcl.
 
 %package netclient-devel
 Summary:	HTTP 1.1 client for OCaml
@@ -187,17 +187,17 @@ methods, currently Basic and Digest; event-driven implementation;
 allows concurrent service for several network connections.
 
 This package contains files needed to develop OCaml programs using
-this library.
+netclient library.
 
 %description netclient-devel -l pl.UTF-8
-Implementuje większość HTTP/1.1. Implementuje również następujące
-zaawansowane własności: komunikaty w kawałkach; połączenia stałe;
-połączenia w trybie "full duplex"; modularne metody autentykacji,
-obecnie Basic i Digest; bazowna na zdarzeniach implementacja;
-umożliwia jednoczesną obsługę kilku połączeń.
+Biblioteka netclient implementuje większość HTTP/1.1, a także
+następujące zaawansowane właściwości: komunikaty w kawałkach;
+połączenia stałe; połączenia w trybie "full duplex"; modularne metody
+uwierzytelniania, obecnie Basic i Digest; implementacja oparta na
+zdarzeniach; umożliwia jednoczesną obsługę kilku połączeń.
 
-Pakiet ten zawiera pliki niezbędne do tworzenia programów używających
-tej biblioteki.
+Ten pakiet zawiera pliki niezbędne do tworzenia programów używających
+biblioteki netclient.
 
 %package nethttpd-devel
 Summary:	HTTPd library
@@ -211,16 +211,16 @@ Requires:	%{name}-netplex-devel = %{version}-%{release}
 
 %description nethttpd-devel
 HTTPd library, part of Ocamlnet. This package contains the files
-needed to develop OCaml programs using this library.
+needed to develop OCaml programs using nethttpd library.
 
 %description nethttpd-devel -l pl.UTF-8
-Biblioteka do obsługi protokołu HTTP, część pakietu Ocamlnet. Pakiet
-ten zawiera pliki niezbędne do tworzenia programów używających tej
-biblioteki.
+Biblioteka do obsługi protokołu HTTP, część pakietu Ocamlnet. Ten
+pakiet zawiera pliki niezbędne do tworzenia programów używających
+biblioteki nethttpd.
 
 %package netplex
 Summary:	Server framework
-#Summary(pl.UTF-8):	
+Summary(pl.UTF-8):	Szkielet serwerowy
 Group:		Libraries
 %requires_eq	ocaml-runtime
 %requires_eq	ocaml-labltk
@@ -229,16 +229,17 @@ Group:		Libraries
 Server framework.
 
 This package contains files needed to run bytecode executables using
-this library.
+netplex library.
 
-#%description netplex -l pl.UTF-8
-#
-#Pakiet ten zawiera binaria potrzebne do uruchamiania programów
-#używających tej biblioteki.
+%description netplex -l pl.UTF-8
+Szkielet serwerowy.
+
+Ten pakiet zawiera moduły potrzebne do uruchamiania programów
+używających biblioteki netplex.
 
 %package netplex-devel
 Summary:	Server framework - development part
-#Summary(pl.UTF-8):	 - cześć programistyczna
+Summary(pl.UTF-8):	Szkielet serwerowy - cześć programistyczna
 Group:		Development/Libraries
 Requires:	%{name}-netplex = %{version}-%{release}
 Requires:	%{name}-equeue-devel = %{version}-%{release}
@@ -251,16 +252,17 @@ Requires:	%{name}-netsys-devel = %{version}-%{release}
 Server framework.
 
 This package contains files needed to develop OCaml programs using
-this library.
+netplex library.
 
-#%description netplex-devel -l pl.UTF-8
-#
-#Pakiet ten zawiera pliki niezbędne do tworzenia programów używających
-#tej biblioteki.
+%description netplex-devel -l pl.UTF-8
+Szkielet serwerowy.
+
+Ten pakiet zawiera pliki niezbędne do tworzenia programów używających
+biblioteki netplex.
 
 %package netshm-devel
-Summary:	Shared memory support - development part
-#Summary(pl.UTF-8):	 - cześć programistyczna
+Summary:	Shared memory support - development package
+Summary(pl.UTF-8):	Obsługa pamięci dzielonej - pakiet programistyczny
 Group:		Development/Libraries
 Requires:	%{name}-netsys-devel = %{version}-%{release}
 %requires_eq	ocaml
@@ -269,12 +271,13 @@ Requires:	%{name}-netsys-devel = %{version}-%{release}
 Shared memory support.
 
 This package contains files needed to develop OCaml programs using
-this library.
+netshm library.
 
-#%description netshm-devel -l pl.UTF-8
-#
-#Pakiet ten zawiera pliki niezbędne do tworzenia programów używających
-#tej biblioteki.
+%description netshm-devel -l pl.UTF-8
+Obsługa pamięci dzielonej.
+
+Ten pakiet zawiera pliki niezbędne do tworzenia programów używających
+biblioteki netshm.
 
 %package netstring-devel
 Summary:	String processing library
@@ -286,16 +289,16 @@ Requires:	%{name}-netsys-devel = %{version}-%{release}
 
 %description netstring-devel
 String processing library, part of Ocamlnet. This package contains
-files needed to develop OCaml programs using this library.
+files needed to develop OCaml programs using netstring library.
 
 %description netstring-devel -l pl.UTF-8
-Biblioteka do przetwarzania napisów, część pakietu Ocamlnet. Pakiet
-ten zawiera pliki niezbędne do tworzenia programów używających tej
-biblioteki.
+Biblioteka do przetwarzania napisów, część pakietu Ocamlnet. Ten
+pakiet zawiera pliki niezbędne do tworzenia programów używających
+biblioteki netstring.
 
 %package netsys
 Summary:	OS-specific functions
-#Summary(pl.UTF-8):	
+Summary(pl.UTF-8):	Funkcje specyficzne dla systemu operacyjnego
 Group:		Libraries
 %requires_eq	ocaml-runtime
 
@@ -303,16 +306,17 @@ Group:		Libraries
 OS-specific functions.
 
 This package contains files needed to run bytecode executables using
-this library.
+netsys library.
 
-#%description netsys -l pl.UTF-8
-#
-#Pakiet ten zawiera binaria potrzebne do uruchamiania programów
-#używających tej biblioteki.
+%description netsys -l pl.UTF-8
+Funkcje specyficzne dla systemu operacyjnego.
+
+Ten pakiet zawiera moduły potrzebne do uruchamiania programów
+używających biblioteki netsys.
 
 %package netsys-devel
 Summary:	OS-specific functions - development part
-#Summary(pl.UTF-8):	 - cześć programistyczna
+Summary(pl.UTF-8):	Funkcje specyficzne dla systemu operacyjnego - cześć programistyczna
 Group:		Development/Libraries
 Requires:	%{name}-netsys = %{version}-%{release}
 %requires_eq	ocaml
@@ -321,12 +325,13 @@ Requires:	%{name}-netsys = %{version}-%{release}
 OS-specific functions.
 
 This package contains files needed to develop OCaml programs using
-this library.
+netsys library.
 
-#%description netsys-devel -l pl.UTF-8
-#
-#Pakiet ten zawiera pliki niezbędne do tworzenia programów używających
-#tej biblioteki.
+%description netsys-devel -l pl.UTF-8
+Funkcje specyficzne dla systemu operacyjnego.
+
+Ten pakiet zawiera pliki niezbędne do tworzenia programów używających
+biblioteki netsys.
 
 %package pop3-devel
 Summary:	Post Office Protocol (POP3) library
@@ -337,42 +342,42 @@ Requires:	%{name}-netstring-devel = %{version}-%{release}
 
 %description pop3-devel
 Post Office Protocol (POP3) library, part of Ocamlnet. This package
-contains files needed to develop OCaml programs using this library.
+contains files needed to develop OCaml programs using pop library.
 
 %description pop3-devel -l pl.UTF-8
-Biblioteka do obsługi POP3, część pakietu Ocamlnet. Pakiet ten zawiera
-pliki niezbędne do tworzenia programów używających tej biblioteki.
+Biblioteka do obsługi POP3, część pakietu Ocamlnet. Ten pakiet zawiera
+pliki niezbędne do tworzenia programów używających biblioteki pop.
 
 %package rpc
-Summary:	Remote Procedure Call (RPC) library
-Summary(pl.UTF-8):	Biblioteka do obsługi RPC
+Summary:	Remote Procedure Call (RPC) libraries
+Summary(pl.UTF-8):	Biblioteki do obsługi RPC
 Group:		Development/Libraries
 Requires:	%{name}-equeue-ssl = %{version}-%{release}
 %requires_eq	ocaml
 
 %description rpc
-Remote Procedure Call (RPC) library.
+Remote Procedure Call (RPC) libraries.
 
 %description rpc -l pl.UTF-8
-Biblioteka do obsługi RPC.
+Biblioteki do obsługi RPC.
 
 %package rpc-devel
-Summary:	Remote Procedure Call (RPC) library
-Summary(pl.UTF-8):	Biblioteka do obsługi RPC
+Summary:	Remote Procedure Call (RPC) libraries - development part
+Summary(pl.UTF-8):	Biblioteki do obsługi RPC - część programistyczna
 Group:		Development/Libraries
 Requires:	%{name}-equeue-ssl-devel = %{version}-%{release}
 Requires:	%{name}-rpc = %{version}-%{release}
 %requires_eq	ocaml
 
 %description rpc-devel
-Remote Procedure Call (RPC) library.
+Remote Procedure Call (RPC) libraries - development part.
 
 %description rpc-devel -l pl.UTF-8
-Biblioteka do obsługi RPC.
+Biblioteki do obsługi RPC - część programistyczna.
 
 %package shell-devel
 Summary:	Unix shell functions
-#Summary(pl.UTF-8):	
+Summary(pl.UTF-8):	Funkcje powłoki uniksowej
 Group:		Development/Libraries
 Requires:	%{name}-netsys-devel = %{version}-%{release}
 Requires:	%{name}-equeue-devel = %{version}-%{release}
@@ -381,7 +386,8 @@ Requires:	%{name}-equeue-devel = %{version}-%{release}
 %description shell-devel
 Unix shell functions.
 
-#%description shell-devel -l pl.UTF-8
+%description shell-devel -l pl.UTF-8
+Funkcje powłoki uniksowej.
 
 %package smtp-devel
 Summary:	Simple Mail Transfer Protocol (SMTP) library
@@ -395,7 +401,7 @@ Interface for the Simple Mail Tranfer Protocol (SMTP) as specified by
 RFC 2821.
 
 %description smtp-devel -l pl.UTF-8
-Interfejs dla protokołu SMTP wyszczególniony w RFC 2821.
+Interfejs dla protokołu SMTP opisanego w RFC 2821.
 
 %prep
 %setup -q -n ocamlnet-%{version}
