@@ -9,7 +9,7 @@ Summary(pl.UTF-8):	Moduły ułatwiające pisanie programów internetowych w OCam
 Name:		ocaml-net
 Version:	2.2.9
 Release:	3
-License:	GPL v2
+License:	GPL v2+ (nethttpd), LGPL v2+ (mod_caml), BSD-like (the rest)
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/ocamlnet/ocamlnet-%{version}.tar.gz
 # Source0-md5:	3655e3be3bb2806e0a1f48bb7ce16fb3
@@ -33,6 +33,7 @@ Moduły ułatwiające pisanie programów internetowych w OCamlu.
 %package doc
 Summary:	ocaml-net documentation
 Summary(pl.UTF-8):	Dokumentacja dla pakietów ocaml-net
+License:	BSD-like
 Group:		Development/Libraries
 
 %description doc
@@ -44,6 +45,7 @@ Dokumentacja dla pakietów ocaml-net.
 %package cgi-devel
 Summary:	Common Gateway Interface library
 Summary(pl.UTF-8):	Biblioteka do tworzenia skryptów CGI
+License:	LGPL v2+ (mod_caml), BSD-like (the rest)
 Group:		Development/Libraries
 Requires:	%{name}-netplex-devel = %{version}-%{release}
 Requires:	%{name}-netstring-devel = %{version}-%{release}
@@ -62,6 +64,7 @@ biblioteki netcgi.
 %package equeue-devel
 Summary:	Event queue library for OCaml
 Summary(pl.UTF-8):	Biblioteka obsługująca kolejkę zdarzeń dla OCamla
+License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-netsys-devel = %{version}-%{release}
 %requires_eq	ocaml
@@ -84,6 +87,7 @@ biblioteki equeue.
 %package equeue-ssl
 Summary:	Event queue library for OCaml, SSL support
 Summary(pl.UTF-8):	Biblioteka obsługująca kolejkę zdarzeń dla OCamla, wsparcie dla SSL
+License:	BSD-like
 Group:		Libraries
 %requires_eq	ocaml-runtime
 
@@ -104,6 +108,7 @@ używających biblioteki equeue-ssl.
 %package equeue-ssl-devel
 Summary:	Equeue SSL support - development part
 Summary(pl.UTF-8):	Wsparcie dla SSL-a w equeue - cześć programistyczna
+License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-equeue-devel = %{version}-%{release}
 Requires:	%{name}-equeue-ssl = %{version}-%{release}
@@ -127,6 +132,7 @@ biblioteki equeue-ssl.
 %package equeue-tcl
 Summary:	Event queue library for OCaml, Tcl support
 Summary(pl.UTF-8):	Biblioteka obsługująca kolejkę zdarzeń dla OCamla, wsparcie dla Tcl
+License:	BSD-like
 Group:		Libraries
 %requires_eq	ocaml-runtime
 %requires_eq	ocaml-labltk
@@ -149,6 +155,7 @@ używających biblioteki equeue-tcl.
 %package equeue-tcl-devel
 Summary:	Equeue Tcl support - development part
 Summary(pl.UTF-8):	Wsparcie dla Tcl-a w equeue - cześć programistyczna
+License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-equeue-devel = %{version}-%{release}
 Requires:	%{name}-equeue-tcl = %{version}-%{release}
@@ -173,6 +180,7 @@ biblioteki equeue-tcl.
 %package netclient-devel
 Summary:	HTTP 1.1 client for OCaml
 Summary(pl.UTF-8):	Klient HTTP 1.1 dla OCamla
+License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-equeue-devel = %{version}-%{release}
 Requires:	%{name}-netstring-devel = %{version}-%{release}
@@ -202,6 +210,7 @@ biblioteki netclient.
 %package nethttpd-devel
 Summary:	HTTPd library
 Summary(pl.UTF-8):	Biblioteka do obsługi protokołu HTTP
+License:	GPL v2+
 Group:		Development/Libraries
 Requires:	%{name}-cgi-devel = %{version}-%{release}
 Requires:	%{name}-equeue-devel = %{version}-%{release}
@@ -221,6 +230,7 @@ biblioteki nethttpd.
 %package netplex
 Summary:	Server framework
 Summary(pl.UTF-8):	Szkielet serwerowy
+License:	BSD-like
 Group:		Libraries
 %requires_eq	ocaml-runtime
 %requires_eq	ocaml-labltk
@@ -240,6 +250,7 @@ używających biblioteki netplex.
 %package netplex-devel
 Summary:	Server framework - development part
 Summary(pl.UTF-8):	Szkielet serwerowy - cześć programistyczna
+License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-netplex = %{version}-%{release}
 Requires:	%{name}-equeue-devel = %{version}-%{release}
@@ -263,6 +274,7 @@ biblioteki netplex.
 %package netshm-devel
 Summary:	Shared memory support - development package
 Summary(pl.UTF-8):	Obsługa pamięci dzielonej - pakiet programistyczny
+License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-netsys-devel = %{version}-%{release}
 %requires_eq	ocaml
@@ -282,6 +294,7 @@ biblioteki netshm.
 %package netstring-devel
 Summary:	String processing library
 Summary(pl.UTF-8):	Biblioteka do przetwarzania napisów
+License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-netsys-devel = %{version}-%{release}
 %requires_eq	ocaml-pcre-devel
@@ -299,6 +312,7 @@ biblioteki netstring.
 %package netsys
 Summary:	OS-specific functions
 Summary(pl.UTF-8):	Funkcje specyficzne dla systemu operacyjnego
+License:	BSD-like
 Group:		Libraries
 %requires_eq	ocaml-runtime
 
@@ -317,6 +331,7 @@ używających biblioteki netsys.
 %package netsys-devel
 Summary:	OS-specific functions - development part
 Summary(pl.UTF-8):	Funkcje specyficzne dla systemu operacyjnego - cześć programistyczna
+License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-netsys = %{version}-%{release}
 %requires_eq	ocaml
@@ -336,6 +351,7 @@ biblioteki netsys.
 %package pop3-devel
 Summary:	Post Office Protocol (POP3) library
 Summary(pl.UTF-8):	Biblioteka do obsługi POP3
+License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-netstring-devel = %{version}-%{release}
 %requires_eq	ocaml
@@ -351,6 +367,7 @@ pliki niezbędne do tworzenia programów używających biblioteki pop.
 %package rpc
 Summary:	Remote Procedure Call (RPC) libraries
 Summary(pl.UTF-8):	Biblioteki do obsługi RPC
+License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-equeue-ssl = %{version}-%{release}
 %requires_eq	ocaml
@@ -364,6 +381,7 @@ Biblioteki do obsługi RPC.
 %package rpc-devel
 Summary:	Remote Procedure Call (RPC) libraries - development part
 Summary(pl.UTF-8):	Biblioteki do obsługi RPC - część programistyczna
+License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-equeue-ssl-devel = %{version}-%{release}
 Requires:	%{name}-rpc = %{version}-%{release}
@@ -378,6 +396,7 @@ Biblioteki do obsługi RPC - część programistyczna.
 %package shell-devel
 Summary:	Unix shell functions
 Summary(pl.UTF-8):	Funkcje powłoki uniksowej
+License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-netsys-devel = %{version}-%{release}
 Requires:	%{name}-equeue-devel = %{version}-%{release}
@@ -392,6 +411,7 @@ Funkcje powłoki uniksowej.
 %package smtp-devel
 Summary:	Simple Mail Transfer Protocol (SMTP) library
 Summary(pl.UTF-8):	Biblioteka do obsługi SMTP
+License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-netstring-devel = %{version}-%{release}
 %requires_eq    ocaml
