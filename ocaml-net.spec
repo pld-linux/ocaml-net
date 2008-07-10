@@ -8,12 +8,13 @@ Summary:	Modules for Internet programming in OCaml
 Summary(pl.UTF-8):	Moduły ułatwiające pisanie programów internetowych w OCamlu
 Name:		ocaml-net
 Version:	2.2.9
-Release:	3
+Release:	4
 License:	GPL v2+ (nethttpd), LGPL v2+ (mod_caml), BSD-like (the rest)
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/ocamlnet/ocamlnet-%{version}.tar.gz
+Source0:	http://download.camlcity.org/download/ocamlnet-%{version}.tar.gz
 # Source0-md5:	3655e3be3bb2806e0a1f48bb7ce16fb3
-URL:		http://ocamlnet.sourceforge.net/
+Patch0:		%{name}-buildfix.patch
+URL:		http://projects.camlcity.org/projects/ocamlnet.html
 BuildRequires:	ncurses-devel
 BuildRequires:	ocaml >= %{ocaml_ver}
 BuildRequires:	ocaml-findlib
@@ -425,6 +426,7 @@ Interfejs dla protokołu SMTP opisanego w RFC 2821.
 
 %prep
 %setup -q -n ocamlnet-%{version}
+%patch0 -p1
 
 %build
 # no %%configure, please
