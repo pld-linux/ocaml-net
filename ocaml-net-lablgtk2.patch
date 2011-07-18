@@ -1,0 +1,11 @@
+--- ocamlnet-3.3.4/configure~	2011-07-12 17:37:46.000000000 +0200
++++ ocamlnet-3.3.4/configure	2011-07-18 11:31:34.518459688 +0200
+@@ -629,7 +629,7 @@
+ EOF
+     # Note: this newer API is never broken in the sense checked below, i.e.
+     # such lablgtk2 versions do not exist.
+-    if ocamlfind ocamlc -package unix,lablgtk2 -linkpkg -o tmp/gtk tmp/gtk.ml >/dev/null 2>/dev/null && tmp/gtk; then
++    if ocamlfind ocamlc -package unix,lablgtk2 -linkpkg -o tmp/gtk tmp/gtk.ml >/dev/null 2>/dev/null; then
+         echo "yes"
+         gtk2_io_add_watch_supports_lists="-ppopt -DGTK2_IO_ADD_WATCH_SUPPORTS_LISTS"
+     else
