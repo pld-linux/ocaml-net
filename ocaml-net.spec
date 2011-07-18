@@ -4,7 +4,7 @@ Summary:	Modules for Internet programming in OCaml
 Summary(pl.UTF-8):	Moduły ułatwiające pisanie programów internetowych w OCamlu
 Name:		ocaml-net
 Version:	3.3.4
-Release:	1
+Release:	2
 License:	GPL v2+ (nethttpd), LGPL v2+ (mod_caml), BSD-like (the rest)
 Group:		Libraries
 Source0:	http://download.camlcity.org/download/ocamlnet-%{version}.tar.gz
@@ -111,7 +111,7 @@ Summary(pl.UTF-8):	Biblioteka obsługująca kolejkę zdarzeń GTK dla OCamla
 License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-equeue-devel = %{version}-%{release}
-Requires:	ocaml-lablgtk-devel = %{version}-%{release}
+Requires:	ocaml-lablgtk-devel
 %requires_eq	ocaml
 
 %description equeue-gtk-devel
@@ -134,7 +134,7 @@ Summary(pl.UTF-8):	Biblioteka obsługująca kolejkę zdarzeń GTK2 dla OCamla
 License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-equeue-devel = %{version}-%{release}
-Requires:	ocaml-lablgtk2-devel = %{version}-%{release}
+Requires:	ocaml-lablgtk2-devel
 %requires_eq	ocaml
 
 %description equeue-gtk2-devel
@@ -503,7 +503,7 @@ Summary:	Gzip channels - development part
 Summary(pl.UTF-8):	Funkcje do kompresji kanałow - cześć programistyczna
 License:	BSD-like
 Group:		Development/Libraries
-Requires:	%{name}-netstring = %{version}-%{release}
+Requires:	%{name}-netstring-devel = %{version}-%{release}
 %requires_eq	ocaml
 
 %description netzip-devel
