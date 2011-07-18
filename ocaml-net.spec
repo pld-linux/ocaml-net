@@ -1,4 +1,5 @@
 %define		apxs	/usr/sbin/apxs
+%define		apache	/usr/sbin/httpd
 Summary:	Modules for Internet programming in OCaml
 Summary(pl.UTF-8):	Moduły ułatwiające pisanie programów internetowych w OCamlu
 Name:		ocaml-net
@@ -14,6 +15,7 @@ Patch2:		%{name}-zip.patch
 Patch3:		%{name}-apache-link.patch
 URL:		http://projects.camlcity.org/projects/ocamlnet.html
 BuildRequires:	%{apxs}
+BuildRequires:	%{apache}
 BuildRequires:	apache-devel >= 2.0
 BuildRequires:	ncurses-devel
 BuildRequires:	ocaml >= 1:3.09.2
@@ -611,7 +613,7 @@ Interfejs dla protokołu SMTP opisanego w RFC 2821.
 	-equeue-tcl-libs "-ltcl" \
 	-with-nethttpd \
 	-apxs %{apxs} \
-	-apache /usr/sbin/httpd
+	-apache %{apache}
 
 %{__make} -j1 all opt
 
