@@ -1,0 +1,11 @@
+--- ocamlnet-3.3.4/configure~	2011-07-18 12:35:45.376035709 +0200
++++ ocamlnet-3.3.4/configure	2011-07-18 12:41:51.558035626 +0200
+@@ -932,7 +932,7 @@
+ # For -enable-apache
+ APACHE_MAJOR = $apache_major
+ APACHE_LIBDIR = $apache_libdir
+-APACHE_OCAMLLIBS = -l$apache_camlrun -ltermcap -lunix -l$libstr
++APACHE_OCAMLLIBS = -l$apache_camlrun -Wl,-R$apache_ocamllibdir -lunix -l$libstr
+ APACHE_INCDIR = $apache_incdir
+ APACHE_CONFDIR = $apache_confdir
+ APACHE_LDFLAGS_SHLIB = $apache_ldflags_shlib
