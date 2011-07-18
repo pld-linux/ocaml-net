@@ -14,20 +14,20 @@ Patch1:		%{name}-lablgtk2.patch
 Patch2:		%{name}-zip.patch
 Patch3:		%{name}-apache-link.patch
 URL:		http://projects.camlcity.org/projects/ocamlnet.html
-BuildRequires:	%{apxs}
 BuildRequires:	%{apache}
+BuildRequires:	%{apxs}
 BuildRequires:	apache-devel >= 2.0
 BuildRequires:	ncurses-devel
 BuildRequires:	ocaml >= 1:3.09.2
-BuildRequires:	ocaml-findlib
-BuildRequires:	ocaml-pcre-devel
-BuildRequires:	ocaml-lablgtk-devel
-BuildRequires:	ocaml-lablgtk2-devel >= 2.14.2
-BuildRequires:	ocaml-ssl-devel
-BuildRequires:	ocaml-zip-devel
 BuildRequires:	ocaml-cryptgps-devel
 BuildRequires:	ocaml-cryptokit-devel
+BuildRequires:	ocaml-findlib
+BuildRequires:	ocaml-lablgtk-devel
+BuildRequires:	ocaml-lablgtk2-devel >= 2.14.2
 BuildRequires:	ocaml-labltk-devel
+BuildRequires:	ocaml-pcre-devel
+BuildRequires:	ocaml-ssl-devel
+BuildRequires:	ocaml-zip-devel
 BuildRequires:	tcl-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -60,7 +60,7 @@ Group:		Development/Libraries
 Requires:	%{name}-netplex-devel = %{version}-%{release}
 Requires:	%{name}-netstring-devel = %{version}-%{release}
 Requires:	%{name}-netsys-devel = %{version}-%{release}
-Obsoletes:	%{name}-cgi-devel
+Obsoletes:	ocaml-net-cgi-devel
 %requires_eq	ocaml
 
 %description netcgi-devel
@@ -118,8 +118,8 @@ Requires:	ocaml-lablgtk-devel = %{version}-%{release}
 Equeue provides a generic event queue module, and a specific module
 for file descriptor events.
 
-This package contains files needed to develop OCaml programs using
-GTK equeue library.
+This package contains files needed to develop OCaml programs using GTK
+equeue library.
 
 %description equeue-gtk-devel -l pl.UTF-8
 Equeue dostarcza ogólnego modułu obsługi kolejki zdarzeń jak również
@@ -253,21 +253,22 @@ Requires:	%{name}-netsys-devel = %{version}-%{release}
 %requires_eq	ocaml
 
 %description netcamlbox-devel
-Camlboxes are a fast IPC mechanism to send Ocaml values from one process           
-to another. Source and destination processes must run on the same machine          
-(no network). The Ocaml value is copied to a shared memory object where it         
-can be directly accessed by the receiver without unmarshalling step. This          
-means the sender writes the value into the shared memory in a format that          
-can immediately interpreted by the receiver.
+Camlboxes are a fast IPC mechanism to send Ocaml values from one
+process to another. Source and destination processes must run on the
+same machine (no network). The Ocaml value is copied to a shared
+memory object where it can be directly accessed by the receiver
+without unmarshalling step. This means the sender writes the value
+into the shared memory in a format that can immediately interpreted by
+the receiver.
 
 This package contains files needed to develop OCaml programs using
 netcamlbox library.
 
 %description netcamlbox-devel -l pl.UTF-8
-Camlboxy są szybkim mechanizmem IPC do przesyłania danych Ocamla pomiędzy procesami.
-Nadawca i odbiorca muszą być uruchomione na tej samej maszynie. Dane Ocamla
-są kopiowane do segmentu pamięci dzielonej, gdzie mogą byc bezpośrednio
-odczytywane przez odbiorcę.
+Camlboxy są szybkim mechanizmem IPC do przesyłania danych Ocamla
+pomiędzy procesami. Nadawca i odbiorca muszą być uruchomione na tej
+samej maszynie. Dane Ocamla są kopiowane do segmentu pamięci
+dzielonej, gdzie mogą byc bezpośrednio odczytywane przez odbiorcę.
 
 Ten pakiet zawiera pliki niezbędne do tworzenia programów używających
 biblioteki netcamlbox.
@@ -325,8 +326,8 @@ Summary:	HTTPd library
 Summary(pl.UTF-8):	Biblioteka do obsługi protokołu HTTP
 License:	GPL v2+
 Group:		Development/Libraries
-Requires:	%{name}-netcgi-devel = %{version}-%{release}
 Requires:	%{name}-equeue-devel = %{version}-%{release}
+Requires:	%{name}-netcgi-devel = %{version}-%{release}
 Requires:	%{name}-netplex-devel = %{version}-%{release}
 %requires_eq	ocaml-pcre-devel
 %requires_eq	ocaml
@@ -350,13 +351,13 @@ Requires:	%{name}-netplex-devel = %{version}-%{release}
 %requires_eq	ocaml
 
 %description netmech-scram-devel
-Netmech-scram library, part of Ocamlnet. This package contains the files
-needed to develop OCaml programs using netmech-scram library.
+Netmech-scram library, part of Ocamlnet. This package contains the
+files needed to develop OCaml programs using netmech-scram library.
 
 %description netmech-scram-devel -l pl.UTF-8
-Biblioteka do obsługi wieloprocesorowych obliczeń, część pakietu Ocamlnet. Ten
-pakiet zawiera pliki niezbędne do tworzenia programów używających
-biblioteki netmech-scram.
+Biblioteka do obsługi wieloprocesorowych obliczeń, część pakietu
+Ocamlnet. Ten pakiet zawiera pliki niezbędne do tworzenia programów
+używających biblioteki netmech-scram.
 
 %package netmulticore-devel
 Summary:	Multi-processing for compute jobs
@@ -372,9 +373,9 @@ Netmcore library, part of Ocamlnet. This package contains the files
 needed to develop OCaml programs using netmulticore library.
 
 %description netmulticore-devel -l pl.UTF-8
-Biblioteka do obsługi wieloprocesorowych obliczeń, część pakietu Ocamlnet. Ten
-pakiet zawiera pliki niezbędne do tworzenia programów używających
-biblioteki netmulticore.
+Biblioteka do obsługi wieloprocesorowych obliczeń, część pakietu
+Ocamlnet. Ten pakiet zawiera pliki niezbędne do tworzenia programów
+używających biblioteki netmulticore.
 
 %package netplex
 Summary:	Server framework
@@ -401,11 +402,11 @@ Summary:	Server framework - development part
 Summary(pl.UTF-8):	Szkielet serwerowy - cześć programistyczna
 License:	BSD-like
 Group:		Development/Libraries
-Requires:	%{name}-netplex = %{version}-%{release}
 Requires:	%{name}-equeue-devel = %{version}-%{release}
+Requires:	%{name}-netplex = %{version}-%{release}
 Requires:	%{name}-netstring-devel = %{version}-%{release}
-Requires:	%{name}-rpc-devel = %{version}-%{release}
 Requires:	%{name}-netsys-devel = %{version}-%{release}
+Requires:	%{name}-rpc-devel = %{version}-%{release}
 %requires_eq	ocaml
 
 %description netplex-devel
@@ -567,8 +568,8 @@ Summary:	Unix shell functions
 Summary(pl.UTF-8):	Funkcje powłoki uniksowej
 License:	BSD-like
 Group:		Development/Libraries
-Requires:	%{name}-netsys-devel = %{version}-%{release}
 Requires:	%{name}-equeue-devel = %{version}-%{release}
+Requires:	%{name}-netsys-devel = %{version}-%{release}
 %requires_eq    ocaml
 
 %description shell-devel
@@ -639,7 +640,7 @@ cd ..
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/ocaml/netcgi_apache/500netcgi_apache.info
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/ocaml/netcgi_apache/META
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/ocaml/netcgi_apache/mod_netcgi_apache.so
-	 
+
 install -p src/netcgi2-apache/mod_netcgi_apache.so $RPM_BUILD_ROOT%{_apachepkglibdir}/mod_netcgi.so
 cat <<EOF >$RPM_BUILD_ROOT%{_apachesysconfdir}/90_mod_netcgi.conf
 LoadModule netcgi_module     modules/mod_netcgi.so
