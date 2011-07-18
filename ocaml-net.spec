@@ -1,29 +1,36 @@
-# TODO:
-# - nethttpd needs to be packaged
-# - apache stuff
-# - lablgtk2 support
-#
-%define		ocaml_ver	1:3.09.2
+%define		apxs	/usr/sbin/apxs
 Summary:	Modules for Internet programming in OCaml
 Summary(pl.UTF-8):	Moduły ułatwiające pisanie programów internetowych w OCamlu
 Name:		ocaml-net
-Version:	2.2.9
-Release:	5
+Version:	3.3.4
+Release:	1
 License:	GPL v2+ (nethttpd), LGPL v2+ (mod_caml), BSD-like (the rest)
 Group:		Libraries
 Source0:	http://download.camlcity.org/download/ocamlnet-%{version}.tar.gz
-# Source0-md5:	3655e3be3bb2806e0a1f48bb7ce16fb3
+# Source0-md5:	2fb725528725d6fb839ba4fdd5e8ac1c
 Patch0:		%{name}-buildfix.patch
+Patch1:		%{name}-lablgtk2.patch
+Patch2:		%{name}-zip.patch
+Patch3:		%{name}-apache-link.patch
 URL:		http://projects.camlcity.org/projects/ocamlnet.html
+BuildRequires:	%{apxs}
+BuildRequires:	apache-devel >= 2.0
 BuildRequires:	ncurses-devel
-BuildRequires:	ocaml >= %{ocaml_ver}
+BuildRequires:	ocaml >= 1:3.09.2
 BuildRequires:	ocaml-findlib
 BuildRequires:	ocaml-pcre-devel
-#BuildRequires:	ocaml-lablgtk2-devel
+BuildRequires:	ocaml-lablgtk-devel
+BuildRequires:	ocaml-lablgtk2-devel >= 2.14.2
 BuildRequires:	ocaml-ssl-devel
+BuildRequires:	ocaml-zip-devel
+BuildRequires:	ocaml-cryptgps-devel
+BuildRequires:	ocaml-cryptokit-devel
 BuildRequires:	ocaml-labltk-devel
 BuildRequires:	tcl-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_apachepkglibdir	%(%{apxs} -q LIBEXECDIR 2>/dev/null)
+%define		_apachesysconfdir	%(%{apxs} -q SYSCONFDIR 2>/dev/null)/conf.d
 
 %description
 Modules for Internet programming in OCaml.
@@ -43,7 +50,7 @@ ocaml-net documentation.
 %description doc -l pl.UTF-8
 Dokumentacja dla pakietów ocaml-net.
 
-%package cgi-devel
+%package netcgi-devel
 Summary:	Common Gateway Interface library
 Summary(pl.UTF-8):	Biblioteka do tworzenia skryptów CGI
 License:	LGPL v2+ (mod_caml), BSD-like (the rest)
@@ -51,16 +58,27 @@ Group:		Development/Libraries
 Requires:	%{name}-netplex-devel = %{version}-%{release}
 Requires:	%{name}-netstring-devel = %{version}-%{release}
 Requires:	%{name}-netsys-devel = %{version}-%{release}
+Obsoletes:	%{name}-cgi-devel
 %requires_eq	ocaml
 
-%description cgi-devel
+%description netcgi-devel
 Common Gateway Interface library, part of Ocamlnet. This package
 contains files needed to develop OCaml programs using netcgi library.
 
-%description cgi-devel -l pl.UTF-8
+%description netcgi-devel -l pl.UTF-8
 Biblioteka do tworzenia skryptów CGI, część pakietu Ocamlnet. Ten
 pakiet zawiera pliki niezbędne do tworzenia programów używających
 biblioteki netcgi.
+
+%package -n apache-mod_netcgi
+Summary:	Apache module:
+Summary(pl.UTF-8):	Moduł Apache'a:
+Group:		Networking/Daemons/HTTP
+Requires:	apache(modules-api) = %apache_modules_api
+
+%description -n apache-mod_netcgi
+
+%description -n apache-mod_netcgi -l pl.UTF-8
 
 %package equeue-devel
 Summary:	Event queue library for OCaml
@@ -84,6 +102,52 @@ modułu obsługi zdarzeń na deskryptorach plików.
 
 Ten pakiet zawiera pliki niezbędne do tworzenia programów używających
 biblioteki equeue.
+
+%package equeue-gtk-devel
+Summary:	GTK event queue library for OCaml
+Summary(pl.UTF-8):	Biblioteka obsługująca kolejkę zdarzeń GTK dla OCamla
+License:	BSD-like
+Group:		Development/Libraries
+Requires:	%{name}-equeue-devel = %{version}-%{release}
+Requires:	ocaml-lablgtk-devel = %{version}-%{release}
+%requires_eq	ocaml
+
+%description equeue-gtk-devel
+Equeue provides a generic event queue module, and a specific module
+for file descriptor events.
+
+This package contains files needed to develop OCaml programs using
+GTK equeue library.
+
+%description equeue-gtk-devel -l pl.UTF-8
+Equeue dostarcza ogólnego modułu obsługi kolejki zdarzeń jak również
+modułu obsługi zdarzeń na deskryptorach plików.
+
+Ten pakiet zawiera pliki niezbędne do tworzenia programów używających
+biblioteki equeue GTK.
+
+%package equeue-gtk2-devel
+Summary:	GTK2 event queue library for OCaml
+Summary(pl.UTF-8):	Biblioteka obsługująca kolejkę zdarzeń GTK2 dla OCamla
+License:	BSD-like
+Group:		Development/Libraries
+Requires:	%{name}-equeue-devel = %{version}-%{release}
+Requires:	ocaml-lablgtk2-devel = %{version}-%{release}
+%requires_eq	ocaml
+
+%description equeue-gtk2-devel
+Equeue provides a generic event queue module, and a specific module
+for file descriptor events.
+
+This package contains files needed to develop OCaml programs using
+GTK2 equeue library.
+
+%description equeue-gtk2-devel -l pl.UTF-8
+Equeue dostarcza ogólnego modułu obsługi kolejki zdarzeń jak również
+modułu obsługi zdarzeń na deskryptorach plików.
+
+Ten pakiet zawiera pliki niezbędne do tworzenia programów używających
+biblioteki equeue GTK2.
 
 %package equeue-ssl
 Summary:	Event queue library for OCaml, SSL support
@@ -178,6 +242,34 @@ w Tcl.
 Ten pakiet zawiera pliki niezbędne do tworzenia programów używających
 biblioteki equeue-tcl.
 
+%package netcamlbox-devel
+Summary:	Fast IPC mechanism for OCaml
+Summary(pl.UTF-8):	Szybki mechanizm IPC dla OCamla
+License:	BSD-like
+Group:		Development/Libraries
+Requires:	%{name}-netsys-devel = %{version}-%{release}
+%requires_eq	ocaml
+
+%description netcamlbox-devel
+Camlboxes are a fast IPC mechanism to send Ocaml values from one process           
+to another. Source and destination processes must run on the same machine          
+(no network). The Ocaml value is copied to a shared memory object where it         
+can be directly accessed by the receiver without unmarshalling step. This          
+means the sender writes the value into the shared memory in a format that          
+can immediately interpreted by the receiver.
+
+This package contains files needed to develop OCaml programs using
+netcamlbox library.
+
+%description netcamlbox-devel -l pl.UTF-8
+Camlboxy są szybkim mechanizmem IPC do przesyłania danych Ocamla pomiędzy procesami.
+Nadawca i odbiorca muszą być uruchomione na tej samej maszynie. Dane Ocamla
+są kopiowane do segmentu pamięci dzielonej, gdzie mogą byc bezpośrednio
+odczytywane przez odbiorcę.
+
+Ten pakiet zawiera pliki niezbędne do tworzenia programów używających
+biblioteki netcamlbox.
+
 %package netclient-devel
 Summary:	HTTP 1.1 client for OCaml
 Summary(pl.UTF-8):	Klient HTTP 1.1 dla OCamla
@@ -208,12 +300,30 @@ zdarzeniach; umożliwia jednoczesną obsługę kilku połączeń.
 Ten pakiet zawiera pliki niezbędne do tworzenia programów używających
 biblioteki netclient.
 
+%package netgssapi-devel
+Summary:	GSS-API generic definition
+Summary(pl.UTF-8):	Biblioteka do obsługi protokołu GSSAPI
+License:	GPL v2+
+Group:		Development/Libraries
+Requires:	%{name}-netstring-devel = %{version}-%{release}
+Requires:	%{name}-netsys-devel = %{version}-%{release}
+%requires_eq	ocaml
+
+%description netgssapi-devel
+GSSAPI library, part of Ocamlnet. This package contains the files
+needed to develop OCaml programs using netgssapi library.
+
+%description netgssapi-devel -l pl.UTF-8
+Biblioteka do obsługi protokołu GSSAPI, część pakietu Ocamlnet. Ten
+pakiet zawiera pliki niezbędne do tworzenia programów używających
+biblioteki netgssapi.
+
 %package nethttpd-devel
 Summary:	HTTPd library
 Summary(pl.UTF-8):	Biblioteka do obsługi protokołu HTTP
 License:	GPL v2+
 Group:		Development/Libraries
-Requires:	%{name}-cgi-devel = %{version}-%{release}
+Requires:	%{name}-netcgi-devel = %{version}-%{release}
 Requires:	%{name}-equeue-devel = %{version}-%{release}
 Requires:	%{name}-netplex-devel = %{version}-%{release}
 %requires_eq	ocaml-pcre-devel
@@ -227,6 +337,42 @@ needed to develop OCaml programs using nethttpd library.
 Biblioteka do obsługi protokołu HTTP, część pakietu Ocamlnet. Ten
 pakiet zawiera pliki niezbędne do tworzenia programów używających
 biblioteki nethttpd.
+
+%package netmech-scram-devel
+Summary:	SCRAM mechanism for authentication
+Summary(pl.UTF-8):	Mechanizm autentykacji SCRAM
+License:	GPL v2+
+Group:		Development/Libraries
+Requires:	%{name}-netcamlbox-devel = %{version}-%{release}
+Requires:	%{name}-netplex-devel = %{version}-%{release}
+%requires_eq	ocaml
+
+%description netmech-scram-devel
+Netmech-scram library, part of Ocamlnet. This package contains the files
+needed to develop OCaml programs using netmech-scram library.
+
+%description netmech-scram-devel -l pl.UTF-8
+Biblioteka do obsługi wieloprocesorowych obliczeń, część pakietu Ocamlnet. Ten
+pakiet zawiera pliki niezbędne do tworzenia programów używających
+biblioteki netmech-scram.
+
+%package netmulticore-devel
+Summary:	Multi-processing for compute jobs
+Summary(pl.UTF-8):	Obsługa wieloprocesorowych obliczeń
+License:	GPL v2+
+Group:		Development/Libraries
+Requires:	%{name}-netcamlbox-devel = %{version}-%{release}
+Requires:	%{name}-netplex-devel = %{version}-%{release}
+%requires_eq	ocaml
+
+%description netmulticore-devel
+Netmcore library, part of Ocamlnet. This package contains the files
+needed to develop OCaml programs using netmulticore library.
+
+%description netmulticore-devel -l pl.UTF-8
+Biblioteka do obsługi wieloprocesorowych obliczeń, część pakietu Ocamlnet. Ten
+pakiet zawiera pliki niezbędne do tworzenia programów używających
+biblioteki netmulticore.
 
 %package netplex
 Summary:	Server framework
@@ -349,6 +495,26 @@ Funkcje specyficzne dla systemu operacyjnego.
 Ten pakiet zawiera pliki niezbędne do tworzenia programów używających
 biblioteki netsys.
 
+%package netzip-devel
+Summary:	Gzip channels - development part
+Summary(pl.UTF-8):	Funkcje do kompresji kanałow - cześć programistyczna
+License:	BSD-like
+Group:		Development/Libraries
+Requires:	%{name}-netstring = %{version}-%{release}
+%requires_eq	ocaml
+
+%description netzip-devel
+Gzip channels functions.
+
+This package contains files needed to develop OCaml programs using
+netzip library.
+
+%description netzip-devel -l pl.UTF-8
+Funkcje do kompresji kanałow.
+
+Ten pakiet zawiera pliki niezbędne do tworzenia programów używających
+biblioteki netzip.
+
 %package pop3-devel
 Summary:	Post Office Protocol (POP3) library
 Summary(pl.UTF-8):	Biblioteka do obsługi POP3
@@ -427,23 +593,31 @@ Interfejs dla protokołu SMTP opisanego w RFC 2821.
 %prep
 %setup -q -n ocamlnet-%{version}
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 %build
 # no %%configure, please
 ./configure \
-	-disable-gtk \
-	-disable-gtk2 \
+	-enable-gtk \
+	-enable-gtk2 \
 	-enable-ssl \
+	-enable-zip \
+	-enable-crypto \
+	-enable-apache \
+	-with-rpc-auth-dh \
 	-enable-tcl \
 	-equeue-tcl-libs "-ltcl" \
-	-with-nethttpd
+	-with-nethttpd \
+	-apxs %{apxs} \
+	-apache /usr/sbin/httpd
 
 %{__make} -j1 all opt
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
-install -d $RPM_BUILD_ROOT%{_libdir}/ocaml
+install -d $RPM_BUILD_ROOT{%{_libdir}/ocaml,%{_apachepkglibdir},%{_apachesysconfdir}}
 
 %{__make} -j1 install \
 	OCAMLFIND_DESTDIR=$RPM_BUILD_ROOT%{_libdir}/ocaml \
@@ -458,17 +632,45 @@ for f in e* n* p* r* shell smtp ; do
 	echo "directory = \"+$f\"" \
 		>> $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/$f/META
 done
-# cgi is a special case
-install -d $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/cgi
-mv $RPM_BUILD_ROOT%{_libdir}/ocaml/cgi/META $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/cgi/
 cd ..
+
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/ocaml/netcgi_apache/500netcgi_apache.info
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/ocaml/netcgi_apache/META
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/ocaml/netcgi_apache/mod_netcgi_apache.so
+	 
+install -p src/netcgi2-apache/mod_netcgi_apache.so $RPM_BUILD_ROOT%{_apachepkglibdir}/mod_netcgi.so
+cat <<EOF >$RPM_BUILD_ROOT%{_apachesysconfdir}/90_mod_netcgi.conf
+LoadModule netcgi_module     modules/mod_netcgi.so
+
+<IfModule netcgi_module>
+	NetcgiLoad pcre/pcre.cma
+	NetcgiLoad netsys/netsys.cma
+	NetcgiLoad netstring/netstring.cma
+	NetcgiLoad str.cma
+	NetcgiLoad netcgi2/netcgi.cma
+	NetcgiLoad netcgi2-apache/netcgi_apache.cma
+
+	NetcgiHandler Netcgi_apache.bytecode
+	AddHandler ocaml-bytecode .cma
+
+#	Alias /caml-bin/ /path/to/your/scripts/
+#	<Location /caml-bin>
+#		SetHandler ocaml-bytecode
+#		NetcgiHandler Netcgi_apache.bytecode
+#		Options ExecCGI
+#		Allow from all
+#	</Location>
+</IfModule>
+EOF
 
 # not sure about *.o
 rm $RPM_BUILD_ROOT%{_libdir}/ocaml/*/*.mli
 
-install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-{cgi,equeue,netclient,nethttpd,pop3,rpc}-%{version}
-cp -r examples/cgi/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-cgi-%{version}
+install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-{netcgi,equeue,netcamlbox,netmulticore,netclient,nethttpd,pop3,rpc}-%{version}
+cp -r examples/camlbox/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-netcamlbox-%{version}
+cp -r examples/cgi/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-netcgi-%{version}
 cp -r examples/equeue/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-equeue-%{version}
+cp -r examples/multicore/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-netmulticore-%{version}
 cp -r examples/netclient/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-netclient-%{version}
 cp -r examples/nethttpd/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-nethttpd-%{version}
 cp -r examples/pop/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-pop3-%{version}
@@ -481,22 +683,40 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc LICENSE* ChangeLog RELNOTES doc/html-main
 
-%files cgi-devel
+%files netcgi-devel
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/netcgi*
 %{_libdir}/ocaml/netcgi*/*.cm[ixao]*
 %{_libdir}/ocaml/netcgi*/*.a
 %{_libdir}/ocaml/site-lib/*cgi*
-%{_examplesdir}/%{name}-cgi-%{version}
+%{_examplesdir}/%{name}-netcgi-%{version}
+
+%files -n apache-mod_netcgi
+%defattr(644,root,root,755)
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_apachesysconfdir}/*_mod_netcgi.conf
+%attr(755,root,root) %{_apachepkglibdir}/mod_netcgi.so
 
 %files equeue-devel
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/equeue
 %{_libdir}/ocaml/equeue/*.cm[ixao]*
 %{_libdir}/ocaml/equeue/*.a
-%{_libdir}/ocaml/equeue/*.o
 %{_libdir}/ocaml/site-lib/equeue
 %{_examplesdir}/%{name}-equeue-%{version}
+
+%files equeue-gtk-devel
+%defattr(644,root,root,755)
+%dir %{_libdir}/ocaml/equeue-gtk1
+%{_libdir}/ocaml/equeue-gtk1/*.cm[ixao]*
+%{_libdir}/ocaml/equeue-gtk1/*.a
+%{_libdir}/ocaml/site-lib/equeue-gtk1
+
+%files equeue-gtk2-devel
+%defattr(644,root,root,755)
+%dir %{_libdir}/ocaml/equeue-gtk2
+%{_libdir}/ocaml/equeue-gtk2/*.cm[ixao]*
+%{_libdir}/ocaml/equeue-gtk2/*.a
+%{_libdir}/ocaml/site-lib/equeue-gtk2
 
 %files equeue-ssl
 %defattr(644,root,root,755)
@@ -520,22 +740,51 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/ocaml/equeue-tcl/*.a
 %{_libdir}/ocaml/site-lib/equeue-tcl
 
+%files netcamlbox-devel
+%defattr(644,root,root,755)
+%dir %{_libdir}/ocaml/netcamlbox
+%{_libdir}/ocaml/netcamlbox/*.cm[ixao]*
+%{_libdir}/ocaml/netcamlbox/*.a
+%{_libdir}/ocaml/site-lib/netcamlbox
+%{_examplesdir}/%{name}-netcamlbox-%{version}
+
 %files netclient-devel
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/netclient
 %{_libdir}/ocaml/netclient/*.cm[ixao]*
 %{_libdir}/ocaml/netclient/*.a
-%{_libdir}/ocaml/netclient/*.o
 %{_libdir}/ocaml/site-lib/netclient
 %{_examplesdir}/%{name}-netclient-%{version}
 
+%files netgssapi-devel
+%defattr(644,root,root,755)
+%dir %{_libdir}/ocaml/netgssapi
+%{_libdir}/ocaml/netgssapi/*.cm[ixao]*
+%{_libdir}/ocaml/netgssapi/*.a
+%{_libdir}/ocaml/site-lib/netgssapi
+
 %files nethttpd-devel
 %defattr(644,root,root,755)
-%dir %{_libdir}/ocaml/nethttpd-*
-%{_libdir}/ocaml/nethttpd-*/*.cm[ixao]*
-%{_libdir}/ocaml/nethttpd-*/*.a
-%{_libdir}/ocaml/site-lib/nethttpd*
+%dir %{_libdir}/ocaml/nethttpd
+%{_libdir}/ocaml/nethttpd/*.cm[ixa]*
+%{_libdir}/ocaml/nethttpd/*.a
+%{_libdir}/ocaml/site-lib/nethttpd
 %{_examplesdir}/%{name}-nethttpd-%{version}
+
+%files netmech-scram-devel
+%defattr(644,root,root,755)
+%dir %{_libdir}/ocaml/netmech-scram
+%{_libdir}/ocaml/netmech-scram/*.cm[ixa]*
+%{_libdir}/ocaml/netmech-scram/*.a
+%{_libdir}/ocaml/site-lib/netmech-scram
+
+%files netmulticore-devel
+%defattr(644,root,root,755)
+%dir %{_libdir}/ocaml/netmulticore
+%{_libdir}/ocaml/netmulticore/*.cm[ixa]*
+%{_libdir}/ocaml/netmulticore/*.a
+%{_libdir}/ocaml/site-lib/netmulticore
+%{_examplesdir}/%{name}-netmulticore-%{version}
 
 %files netplex
 %defattr(644,root,root,755)
@@ -571,12 +820,19 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/netsys
 %attr(755,root,root) %{_libdir}/ocaml/netsys/*.so
+%{_libdir}/ocaml/netsys/*.o
 
 %files netsys-devel
 %defattr(644,root,root,755)
 %{_libdir}/ocaml/netsys/*.cm[ixao]*
 %{_libdir}/ocaml/netsys/*.a
 %{_libdir}/ocaml/site-lib/netsys
+
+%files netzip-devel
+%defattr(644,root,root,755)
+%{_libdir}/ocaml/netzip/*.cm[ixao]*
+%{_libdir}/ocaml/netzip/*.a
+%{_libdir}/ocaml/site-lib/netzip
 
 %files pop3-devel
 %defattr(644,root,root,755)
@@ -608,7 +864,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/ocaml/shell
 %{_libdir}/ocaml/shell/*.cm[ixao]*
 %{_libdir}/ocaml/shell/*.a
-%{_libdir}/ocaml/shell/*.o
 %{_libdir}/ocaml/site-lib/shell
 
 %files smtp-devel
