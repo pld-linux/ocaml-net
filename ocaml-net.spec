@@ -4,7 +4,7 @@ Summary:	Modules for Internet programming in OCaml
 Summary(pl.UTF-8):	Moduły ułatwiające pisanie programów internetowych w OCamlu
 Name:		ocaml-net
 Version:	3.6
-Release:	1
+Release:	2
 License:	GPL v2+ (nethttpd), LGPL v2+ (mod_caml), BSD-like (the rest)
 Group:		Libraries
 Source0:	http://download.camlcity.org/download/ocamlnet-%{version}.tar.gz
@@ -443,11 +443,27 @@ Obsługa pamięci dzielonej.
 Ten pakiet zawiera pliki niezbędne do tworzenia programów używających
 biblioteki netshm.
 
+%package netstring
+Summary:	String processing library
+Summary(pl.UTF-8):	Biblioteka do przetwarzania napisów
+License:	BSD-like
+Group:		Libraries
+Requires:	%{name}-netsys-devel = %{version}-%{release}
+%requires_eq	ocaml-pcre-devel
+%requires_eq	ocaml
+
+%description netstring
+String processing library, part of Ocamlnet.
+
+%description netstring -l pl.UTF-8
+Biblioteka do przetwarzania napisów, część pakietu Ocamlnet.
+
 %package netstring-devel
 Summary:	String processing library
 Summary(pl.UTF-8):	Biblioteka do przetwarzania napisów
 License:	BSD-like
 Group:		Development/Libraries
+Requires:	%{name}-netstring = %{version}-%{release}
 Requires:	%{name}-netsys-devel = %{version}-%{release}
 %requires_eq	ocaml-pcre-devel
 %requires_eq	ocaml
@@ -622,7 +638,7 @@ Interfejs dla protokołu SMTP opisanego w RFC 2821.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_libdir}/ocaml,%{_apachepkglibdir},%{_apachesysconfdir}}
+install -d $RPM_BUILD_ROOT{%{_libdir}/ocaml/stublibs,%{_apachepkglibdir},%{_apachesysconfdir}}
 
 %{__make} -j1 install \
 	OCAMLFIND_DESTDIR=$RPM_BUILD_ROOT%{_libdir}/ocaml \
@@ -641,7 +657,7 @@ cd ..
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/ocaml/netcgi_apache/500netcgi_apache.info
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/ocaml/netcgi_apache/META
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/ocaml/netcgi_apache/mod_netcgi_apache.so
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/ocaml/stublibs/mod_netcgi_apache.so*
 
 install -p src/netcgi2-apache/mod_netcgi_apache.so $RPM_BUILD_ROOT%{_apachepkglibdir}/mod_netcgi.so
 cat <<EOF >$RPM_BUILD_ROOT%{_apachesysconfdir}/90_mod_netcgi.conf
@@ -726,7 +742,8 @@ rm -rf $RPM_BUILD_ROOT
 %files equeue-ssl
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/equeue-ssl
-%attr(755,root,root) %{_libdir}/ocaml/equeue-ssl/*.so
+%attr(755,root,root) %{_libdir}/ocaml/stublibs/dllequeue_ssl.so
+%{_libdir}/ocaml/stublibs/dllequeue_ssl.so.owner
 
 %files equeue-ssl-devel
 %defattr(644,root,root,755)
@@ -737,7 +754,8 @@ rm -rf $RPM_BUILD_ROOT
 %files equeue-tcl
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/equeue-tcl
-%attr(755,root,root) %{_libdir}/ocaml/equeue-tcl/*.so
+%attr(755,root,root) %{_libdir}/ocaml/stublibs/dllequeue_tcl.so
+%{_libdir}/ocaml/stublibs/dllequeue_tcl.so.owner
 
 %files equeue-tcl-devel
 %defattr(644,root,root,755)
@@ -794,14 +812,14 @@ rm -rf $RPM_BUILD_ROOT
 %files netplex
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/netplex-admin
+%dir %{_libdir}/ocaml/netplex
+%{_libdir}/ocaml/netplex/*.o
 
 %files netplex-devel
 %defattr(644,root,root,755)
-%dir %{_libdir}/ocaml/netplex
 %{_libdir}/ocaml/netplex/netplex-packlist
 %{_libdir}/ocaml/netplex/*.cm[ixao]*
 %{_libdir}/ocaml/netplex/*.a
-%{_libdir}/ocaml/netplex/*.o
 %{_libdir}/ocaml/site-lib/netplex
 
 %files netshm-devel
@@ -811,21 +829,26 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/ocaml/netshm/*.a
 %{_libdir}/ocaml/site-lib/netshm
 
-%files netstring-devel
+%files netstring
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/netstring
+%{_libdir}/ocaml/netstring/*.o
+%attr(755,root,root) %{_libdir}/ocaml/stublibs/dllnetaccel_c.so
+%{_libdir}/ocaml/stublibs/dllnetaccel_c.so.owner
+
+%files netstring-devel
+%defattr(644,root,root,755)
 %{_libdir}/ocaml/netstring/netdb-packlist
 %{_libdir}/ocaml/netstring/*.cm[ixao]*
 %{_libdir}/ocaml/netstring/*.a
-%{_libdir}/ocaml/netstring/*.o
-%attr(755,root,root) %{_libdir}/ocaml/netstring/*.so
 %{_libdir}/ocaml/site-lib/netstring
 
 %files netsys
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/netsys
-%attr(755,root,root) %{_libdir}/ocaml/netsys/*.so
 %{_libdir}/ocaml/netsys/*.o
+%attr(755,root,root) %{_libdir}/ocaml/stublibs/dllnetsys.so
+%{_libdir}/ocaml/stublibs/dllnetsys.so.owner
 
 %files netsys-devel
 %defattr(644,root,root,755)
@@ -852,7 +875,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ocamlrpcgen
 %dir %{_libdir}/ocaml/rpc-auth-local
-%attr(755,root,root) %{_libdir}/ocaml/rpc-auth-local/dllrpc_auth_local.so
+%attr(755,root,root) %{_libdir}/ocaml/stublibs/dllrpc_auth_local.so
+%{_libdir}/ocaml/stublibs/dllrpc_auth_local.so.owner
 
 %files rpc-devel
 %defattr(644,root,root,755)
