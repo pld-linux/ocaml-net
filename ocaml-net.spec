@@ -3,12 +3,12 @@
 Summary:	Modules for Internet programming in OCaml
 Summary(pl.UTF-8):	Moduły ułatwiające pisanie programów internetowych w OCamlu
 Name:		ocaml-net
-Version:	3.3.4
-Release:	7
+Version:	3.6
+Release:	1
 License:	GPL v2+ (nethttpd), LGPL v2+ (mod_caml), BSD-like (the rest)
 Group:		Libraries
 Source0:	http://download.camlcity.org/download/ocamlnet-%{version}.tar.gz
-# Source0-md5:	2fb725528725d6fb839ba4fdd5e8ac1c
+# Source0-md5:	c6a42744c456b3b336c7613f5481650a
 Patch0:		%{name}-buildfix.patch
 Patch1:		%{name}-lablgtk2.patch
 Patch2:		%{name}-zip.patch
@@ -19,9 +19,11 @@ BuildRequires:	%{apxs}
 BuildRequires:	apache-devel >= 2.0
 BuildRequires:	ncurses-devel
 BuildRequires:	ocaml >= 1:3.09.2
+BuildRequires:	ocaml-camlp4
 BuildRequires:	ocaml-cryptgps-devel
 BuildRequires:	ocaml-cryptokit-devel
 BuildRequires:	ocaml-findlib
+BuildRequires:	ocaml-findlib-devel
 BuildRequires:	ocaml-lablgtk-devel
 BuildRequires:	ocaml-lablgtk2-devel >= 2.14.2
 BuildRequires:	ocaml-labltk-devel
