@@ -13,6 +13,7 @@ Patch0:		%{name}-buildfix.patch
 Patch1:		%{name}-lablgtk2.patch
 Patch2:		%{name}-zip.patch
 Patch3:		%{name}-apache-link.patch
+Patch4:		%{name}-apache24.patch
 URL:		http://projects.camlcity.org/projects/ocamlnet.html
 BuildRequires:	%{apache}
 BuildRequires:	%{apxs}
@@ -617,6 +618,7 @@ Interfejs dla protokołu SMTP opisanego w RFC 2821.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 # no %%configure, please

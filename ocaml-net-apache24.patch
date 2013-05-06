@@ -1,0 +1,11 @@
+--- ocamlnet-3.6/src/netcgi2-apache/apache.c~	2012-07-20 01:25:25.000000000 +0200
++++ ocamlnet-3.6/src/netcgi2-apache/apache.c	2013-05-06 09:02:42.545701688 +0200
+@@ -212,7 +212,7 @@
+     raise_not_found ();                         \
+ }
+ 
+-CONNECTION(remote_ip)
++CONNECTION(client_ip)
+ CONNECTION(remote_host)
+ 
+ /*----- Request structure. -----*/
