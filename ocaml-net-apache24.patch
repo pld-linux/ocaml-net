@@ -9,3 +9,58 @@
  CONNECTION(remote_host)
  
  /*----- Request structure. -----*/
+--- ocamlnet-3.6/src/netcgi2-apache/netcgi_apache.ml~	2012-07-20 01:25:25.000000000 +0200
++++ ocamlnet-3.6/src/netcgi2-apache/netcgi_apache.ml	2013-05-06 09:10:47.898274743 +0200
+@@ -469,7 +469,7 @@
+   method cgi_path_translated = "" (* FIXME: don't know how to get it *)
+   method cgi_auth_type = try Request.auth_type r with Not_found -> ""
+   method cgi_remote_addr =
+-    try Connection.remote_ip(Request.connection r) with Not_found -> ""
++    try Connection.client_ip(Request.connection r) with Not_found -> ""
+   method cgi_remote_host =
+     try Connection.remote_host(Request.connection r) with Not_found -> ""
+   method cgi_remote_user = try Request.user r with Not_found -> ""
+--- ocamlnet-3.6/src/netcgi2-apache/netcgi_apache.mli~	2012-07-20 01:25:25.000000000 +0200
++++ ocamlnet-3.6/src/netcgi2-apache/netcgi_apache.mli	2013-05-06 09:11:14.894941214 +0200
+@@ -79,8 +79,8 @@
+   sig
+     type t (** Apache [conn_rec] structure. *)
+ 
+-    external remote_ip : t -> string 	= "netcgi2_apache_connection_remote_ip"
+-      (** [conn_rec] [remote_ip] field.
++    external client_ip : t -> string 	= "netcgi2_apache_connection_client_ip"
++      (** [conn_rec] [client_ip] field.
+           @raise Not_found if NULL. *)
+     external remote_host : t -> string = "netcgi2_apache_connection_remote_host"
+       (** [conn_rec] [remote_host] field.
+--- ocamlnet-3.6/src/netcgi2-apache/netcgi_apache_mod.ml.in~	2012-07-20 01:25:26.000000000 +0200
++++ ocamlnet-3.6/src/netcgi2-apache/netcgi_apache_mod.ml.in	2013-05-06 09:11:43.708274338 +0200
+@@ -88,7 +88,7 @@
+   struct
+     type t				(* Actual conn_rec structure. *)
+ 
+-    external remote_ip : t -> string = "netcgi2_apache_connection_remote_ip"
++    external client_ip : t -> string = "netcgi2_apache_connection_client_ip"
+     external remote_host : t -> string = "netcgi2_apache_connection_remote_host"
+ 
+   (* ... etc ... *)
+@@ -237,7 +237,7 @@
+   let _server_admin = Server.admin
+   let _server_is_virtual = Server.is_virtual
+ 
+-  let _connection_remote_ip = Connection.remote_ip
++  let _connection_client_ip = Connection.client_ip
+   let _connection_remote_host = Connection.remote_host
+ 
+   let _request_connection = Request.connection
+--- ocamlnet-3.6/src/netcgi2-apache/netcgi_apache_mod.mli~	2012-07-20 01:25:25.000000000 +0200
++++ ocamlnet-3.6/src/netcgi2-apache/netcgi_apache_mod.mli	2013-05-06 09:12:00.441607551 +0200
+@@ -57,7 +57,7 @@
+   module Connection :
+   sig
+     type t (** Apache [conn_rec] structure. *)
+-    external remote_ip : t -> string 	= "netcgi2_apache_connection_remote_ip"
++    external client_ip : t -> string 	= "netcgi2_apache_connection_client_ip"
+     external remote_host : t -> string = "netcgi2_apache_connection_remote_host"
+   end
+ 
