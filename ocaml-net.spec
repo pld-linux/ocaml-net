@@ -3,17 +3,15 @@
 Summary:	Modules for Internet programming in OCaml
 Summary(pl.UTF-8):	Moduły ułatwiające pisanie programów internetowych w OCamlu
 Name:		ocaml-net
-Version:	3.6
-Release:	7
+Version:	3.7.7
+Release:	1
 License:	GPL v2+ (nethttpd), LGPL v2+ (mod_caml), BSD-like (the rest)
 Group:		Libraries
 Source0:	http://download.camlcity.org/download/ocamlnet-%{version}.tar.gz
-# Source0-md5:	c6a42744c456b3b336c7613f5481650a
+# Source0-md5:	e15e0961d09057f0bbe4f69d6055506c
 Patch0:		%{name}-buildfix.patch
 Patch1:		%{name}-lablgtk2.patch
-Patch2:		%{name}-zip.patch
-Patch3:		%{name}-apache-link.patch
-Patch4:		%{name}-apache24.patch
+Patch2:		%{name}-apache-link.patch
 URL:		http://projects.camlcity.org/projects/ocamlnet.html
 BuildRequires:	%{apache}
 BuildRequires:	%{apxs}
@@ -25,7 +23,6 @@ BuildRequires:	ocaml-cryptgps-devel
 BuildRequires:	ocaml-cryptokit-devel
 BuildRequires:	ocaml-findlib
 BuildRequires:	ocaml-findlib-devel
-BuildRequires:	ocaml-lablgtk-devel
 BuildRequires:	ocaml-lablgtk2-devel >= 2.14.2
 BuildRequires:	ocaml-labltk-devel
 BuildRequires:	ocaml-pcre-devel
@@ -107,29 +104,6 @@ modułu obsługi zdarzeń na deskryptorach plików.
 
 Ten pakiet zawiera pliki niezbędne do tworzenia programów używających
 biblioteki equeue.
-
-%package equeue-gtk-devel
-Summary:	GTK event queue library for OCaml
-Summary(pl.UTF-8):	Biblioteka obsługująca kolejkę zdarzeń GTK dla OCamla
-License:	BSD-like
-Group:		Development/Libraries
-Requires:	%{name}-equeue-devel = %{version}-%{release}
-Requires:	ocaml-lablgtk-devel
-%requires_eq	ocaml
-
-%description equeue-gtk-devel
-Equeue provides a generic event queue module, and a specific module
-for file descriptor events.
-
-This package contains files needed to develop OCaml programs using GTK
-equeue library.
-
-%description equeue-gtk-devel -l pl.UTF-8
-Equeue dostarcza ogólnego modułu obsługi kolejki zdarzeń jak również
-modułu obsługi zdarzeń na deskryptorach plików.
-
-Ten pakiet zawiera pliki niezbędne do tworzenia programów używających
-biblioteki equeue GTK.
 
 %package equeue-gtk2-devel
 Summary:	GTK2 event queue library for OCaml
@@ -617,13 +591,11 @@ Interfejs dla protokołu SMTP opisanego w RFC 2821.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
-%patch4 -p1
 
 %build
 # no %%configure, please
 ./configure \
-	-enable-gtk \
+	-disable-gtk \
 	-enable-gtk2 \
 	-enable-ssl \
 	-enable-zip \
@@ -657,8 +629,7 @@ for f in e* n* p* r* shell smtp ; do
 done
 cd ..
 
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/ocaml/netcgi_apache/500netcgi_apache.info
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/ocaml/netcgi_apache/META
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/ocaml/netcgi2-apache/500netcgi_apache.info
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/ocaml/stublibs/mod_netcgi_apache.so*
 
 install -p src/netcgi2-apache/mod_netcgi_apache.so $RPM_BUILD_ROOT%{_apachepkglibdir}/mod_netcgi.so
@@ -726,13 +697,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/ocaml/equeue/*.a
 %{_libdir}/ocaml/site-lib/equeue
 %{_examplesdir}/%{name}-equeue-%{version}
-
-%files equeue-gtk-devel
-%defattr(644,root,root,755)
-%dir %{_libdir}/ocaml/equeue-gtk1
-%{_libdir}/ocaml/equeue-gtk1/*.cm[ixao]*
-%{_libdir}/ocaml/equeue-gtk1/*.a
-%{_libdir}/ocaml/site-lib/equeue-gtk1
 
 %files equeue-gtk2-devel
 %defattr(644,root,root,755)
@@ -856,6 +820,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/ocaml/netsys/*.cm[ixao]*
 %{_libdir}/ocaml/netsys/*.a
+%{_libdir}/ocaml/netsys/netsys_c_event.h
 %{_libdir}/ocaml/site-lib/netsys
 
 %files netzip-devel
