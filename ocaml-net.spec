@@ -1,6 +1,7 @@
 #
 # Conditional build:
 %bcond_without	ocaml_opt	# skip building native optimized binaries (bytecode is always built)
+%bcond_with	apache		# build apache module
 
 # not yet available on x32 (ocaml 4.02.1), remove when upstream will support it
 %ifnarch %{ix86} %{x8664} arm aarch64 ppc sparc sparcv9
@@ -22,9 +23,11 @@ Patch0:		%{name}-buildfix.patch
 Patch1:		%{name}-lablgtk2.patch
 Patch2:		%{name}-apache-link.patch
 URL:		http://projects.camlcity.org/projects/ocamlnet.html
+%if %{with apache}
 BuildRequires:	%{apache}
 BuildRequires:	%{apxs}
 BuildRequires:	apache-devel >= 2.0
+%endif
 BuildRequires:	ncurses-devel
 BuildRequires:	ocaml >= 1:3.09.2
 BuildRequires:	ocaml-camlp4
@@ -82,8 +85,8 @@ pakiet zawiera pliki niezbędne do tworzenia programów używających
 biblioteki netcgi.
 
 %package -n apache-mod_netcgi
-Summary:	Apache module:
-Summary(pl.UTF-8):	Moduł Apache'a:
+Summary:	Apache module
+Summary(pl.UTF-8):	Moduł Apache'a
 Group:		Networking/Daemons/HTTP
 Requires:	apache(modules-api) = %apache_modules_api
 
@@ -609,7 +612,11 @@ Interfejs dla protokołu SMTP opisanego w RFC 2821.
 	-enable-ssl \
 	-enable-zip \
 	-enable-crypto \
+%if %{with apache}
 	-enable-apache \
+%else
+	-disable-apache \
+%endif
 	-with-rpc-auth-dh \
 	-enable-tcl \
 	-equeue-tcl-libs "-ltcl" \
@@ -638,6 +645,7 @@ for f in e* n* p* r* shell smtp ; do
 done
 cd ..
 
+%if %{with apache}
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/ocaml/netcgi2-apache/500netcgi_apache.info
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/ocaml/stublibs/mod_netcgi_apache.so*
 
@@ -665,6 +673,7 @@ LoadModule netcgi_module     modules/mod_netcgi.so
 #	</Location>
 </IfModule>
 EOF
+%endif
 
 # not sure about *.o
 rm $RPM_BUILD_ROOT%{_libdir}/ocaml/*/*.mli
@@ -690,20 +699,26 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/netcgi*
 %{_libdir}/ocaml/netcgi*/*.cm[ixao]*
+%if %{with ocaml_opt}
 %{_libdir}/ocaml/netcgi*/*.a
+%endif
 %{_libdir}/ocaml/site-lib/*cgi*
 %{_examplesdir}/%{name}-netcgi-%{version}
 
+%if %{with apache}
 %files -n apache-mod_netcgi
 %defattr(644,root,root,755)
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_apachesysconfdir}/*_mod_netcgi.conf
 %attr(755,root,root) %{_apachepkglibdir}/mod_netcgi.so
+%endif
 
 %files equeue-devel
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/equeue
 %{_libdir}/ocaml/equeue/*.cm[ixao]*
+%if %{with ocaml_opt}
 %{_libdir}/ocaml/equeue/*.a
+%endif
 %{_libdir}/ocaml/site-lib/equeue
 %{_examplesdir}/%{name}-equeue-%{version}
 
@@ -711,7 +726,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/equeue-gtk2
 %{_libdir}/ocaml/equeue-gtk2/*.cm[ixao]*
+%if %{with ocaml_opt}
 %{_libdir}/ocaml/equeue-gtk2/*.a
+%endif
 %{_libdir}/ocaml/site-lib/equeue-gtk2
 
 %files equeue-ssl
@@ -723,7 +740,10 @@ rm -rf $RPM_BUILD_ROOT
 %files equeue-ssl-devel
 %defattr(644,root,root,755)
 %{_libdir}/ocaml/equeue-ssl/*.cm[ixao]*
-%{_libdir}/ocaml/equeue-ssl/*.a
+%{_libdir}/ocaml/equeue-ssl/libequeue_ssl.a
+%if %{with ocaml_opt}
+%{_libdir}/ocaml/equeue-ssl/equeue_ssl.a
+%endif
 %{_libdir}/ocaml/site-lib/equeue-ssl
 
 %files equeue-tcl
@@ -735,14 +755,19 @@ rm -rf $RPM_BUILD_ROOT
 %files equeue-tcl-devel
 %defattr(644,root,root,755)
 %{_libdir}/ocaml/equeue-tcl/*.cm[ixao]*
-%{_libdir}/ocaml/equeue-tcl/*.a
+%{_libdir}/ocaml/equeue-tcl/libequeue_tcl.a
+%if %{with ocaml_opt}
+%{_libdir}/ocaml/equeue-tcl/equeue_tcl.a
+%endif
 %{_libdir}/ocaml/site-lib/equeue-tcl
 
 %files netcamlbox-devel
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/netcamlbox
 %{_libdir}/ocaml/netcamlbox/*.cm[ixao]*
+%if %{with ocaml_opt}
 %{_libdir}/ocaml/netcamlbox/*.a
+%endif
 %{_libdir}/ocaml/site-lib/netcamlbox
 %{_examplesdir}/%{name}-netcamlbox-%{version}
 
@@ -750,7 +775,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/netclient
 %{_libdir}/ocaml/netclient/*.cm[ixao]*
+%if %{with ocaml_opt}
 %{_libdir}/ocaml/netclient/*.a
+%endif
 %{_libdir}/ocaml/site-lib/netclient
 %{_examplesdir}/%{name}-netclient-%{version}
 
@@ -758,14 +785,18 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/netgssapi
 %{_libdir}/ocaml/netgssapi/*.cm[ixao]*
+%if %{with ocaml_opt}
 %{_libdir}/ocaml/netgssapi/*.a
+%endif
 %{_libdir}/ocaml/site-lib/netgssapi
 
 %files nethttpd-devel
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/nethttpd
 %{_libdir}/ocaml/nethttpd/*.cm[ixa]*
+%if %{with ocaml_opt}
 %{_libdir}/ocaml/nethttpd/*.a
+%endif
 %{_libdir}/ocaml/site-lib/nethttpd
 %{_examplesdir}/%{name}-nethttpd-%{version}
 
@@ -773,14 +804,18 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/netmech-scram
 %{_libdir}/ocaml/netmech-scram/*.cm[ixa]*
+%if %{with ocaml_opt}
 %{_libdir}/ocaml/netmech-scram/*.a
+%endif
 %{_libdir}/ocaml/site-lib/netmech-scram
 
 %files netmulticore-devel
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/netmulticore
 %{_libdir}/ocaml/netmulticore/*.cm[ixa]*
+%if %{with ocaml_opt}
 %{_libdir}/ocaml/netmulticore/*.a
+%endif
 %{_libdir}/ocaml/site-lib/netmulticore
 %{_examplesdir}/%{name}-netmulticore-%{version}
 
@@ -788,26 +823,34 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/netplex-admin
 %dir %{_libdir}/ocaml/netplex
+%if %{with ocaml_opt}
 %{_libdir}/ocaml/netplex/*.o
+%endif
 
 %files netplex-devel
 %defattr(644,root,root,755)
 %{_libdir}/ocaml/netplex/netplex-packlist
 %{_libdir}/ocaml/netplex/*.cm[ixao]*
+%if %{with ocaml_opt}
 %{_libdir}/ocaml/netplex/*.a
+%endif
 %{_libdir}/ocaml/site-lib/netplex
 
 %files netshm-devel
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/netshm
 %{_libdir}/ocaml/netshm/*.cm[ixao]*
+%if %{with ocaml_opt}
 %{_libdir}/ocaml/netshm/*.a
+%endif
 %{_libdir}/ocaml/site-lib/netshm
 
 %files netstring
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/netstring
+%if %{with ocaml_opt}
 %{_libdir}/ocaml/netstring/*.o
+%endif
 %attr(755,root,root) %{_libdir}/ocaml/stublibs/dllnetaccel_c.so
 %{_libdir}/ocaml/stublibs/dllnetaccel_c.so.owner
 
@@ -815,7 +858,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/ocaml/netstring/netdb-packlist
 %{_libdir}/ocaml/netstring/*.cm[ixao]*
-%{_libdir}/ocaml/netstring/*.a
+%{_libdir}/ocaml/netstring/libnetaccel_c.a
+%if %{with ocaml_opt}
+%{_libdir}/ocaml/netstring/netstring*.a
+%endif
 %{_libdir}/ocaml/site-lib/netstring
 
 %files netsys
@@ -828,7 +874,10 @@ rm -rf $RPM_BUILD_ROOT
 %files netsys-devel
 %defattr(644,root,root,755)
 %{_libdir}/ocaml/netsys/*.cm[ixao]*
-%{_libdir}/ocaml/netsys/*.a
+%{_libdir}/ocaml/netsys/libnetsys.a
+%if %{with ocaml_opt}
+%{_libdir}/ocaml/netsys/netsys.a
+%endif
 %{_libdir}/ocaml/netsys/netsys_c_event.h
 %{_libdir}/ocaml/site-lib/netsys
 
@@ -836,14 +885,18 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/netzip
 %{_libdir}/ocaml/netzip/*.cm[ixao]*
+%if %{with ocaml_opt}
 %{_libdir}/ocaml/netzip/*.a
+%endif
 %{_libdir}/ocaml/site-lib/netzip
 
 %files pop3-devel
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/pop
 %{_libdir}/ocaml/pop/*.cm[ixao]*
+%if %{with ocaml_opt}
 %{_libdir}/ocaml/pop/*.a
+%endif
 %{_libdir}/ocaml/site-lib/pop
 %{_examplesdir}/%{name}-pop3-%{version}
 
@@ -862,7 +915,10 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/ocaml/rpc-ssl
 %{_libdir}/ocaml/rpc-generator/rpcgen-packlist
 %{_libdir}/ocaml/rpc*/*.cm[ixao]*
-%{_libdir}/ocaml/rpc*/*.a
+%{_libdir}/ocaml/rpc*/librpc_auth_local.a
+%if %{with ocaml_opt}
+%{_libdir}/ocaml/rpc*/rpc_*.a
+%endif
 %{_libdir}/ocaml/site-lib/rpc*
 %{_examplesdir}/%{name}-rpc-%{version}
 
@@ -870,12 +926,16 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/shell
 %{_libdir}/ocaml/shell/*.cm[ixao]*
+%if %{with ocaml_opt}
 %{_libdir}/ocaml/shell/*.a
+%endif
 %{_libdir}/ocaml/site-lib/shell
 
 %files smtp-devel
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/smtp
 %{_libdir}/ocaml/smtp/*.cm[ixao]*
+%if %{with ocaml_opt}
 %{_libdir}/ocaml/smtp/*.a
+%endif
 %{_libdir}/ocaml/site-lib/smtp
