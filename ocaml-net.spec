@@ -740,9 +740,9 @@ rm -rf $RPM_BUILD_ROOT
 %files equeue-ssl-devel
 %defattr(644,root,root,755)
 %{_libdir}/ocaml/equeue-ssl/*.cm[ixao]*
-%{_libdir}/ocaml/equeue-ssl/libequeue_ssl.a
+%{_libdir}/ocaml/equeue-ssl/libequeue_ssl*.a
 %if %{with ocaml_opt}
-%{_libdir}/ocaml/equeue-ssl/equeue_ssl.a
+%{_libdir}/ocaml/equeue-ssl/equeue_ssl*.a
 %endif
 %{_libdir}/ocaml/site-lib/equeue-ssl
 
@@ -755,9 +755,9 @@ rm -rf $RPM_BUILD_ROOT
 %files equeue-tcl-devel
 %defattr(644,root,root,755)
 %{_libdir}/ocaml/equeue-tcl/*.cm[ixao]*
-%{_libdir}/ocaml/equeue-tcl/libequeue_tcl.a
+%{_libdir}/ocaml/equeue-tcl/libequeue_tcl*.a
 %if %{with ocaml_opt}
-%{_libdir}/ocaml/equeue-tcl/equeue_tcl.a
+%{_libdir}/ocaml/equeue-tcl/equeue_tcl*.a
 %endif
 %{_libdir}/ocaml/site-lib/equeue-tcl
 
@@ -874,9 +874,9 @@ rm -rf $RPM_BUILD_ROOT
 %files netsys-devel
 %defattr(644,root,root,755)
 %{_libdir}/ocaml/netsys/*.cm[ixao]*
-%{_libdir}/ocaml/netsys/libnetsys.a
+%{_libdir}/ocaml/netsys/libnetsys*.a
 %if %{with ocaml_opt}
-%{_libdir}/ocaml/netsys/netsys.a
+%{_libdir}/ocaml/netsys/netsys*.a
 %endif
 %{_libdir}/ocaml/netsys/netsys_c_event.h
 %{_libdir}/ocaml/site-lib/netsys
@@ -915,9 +915,9 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/ocaml/rpc-ssl
 %{_libdir}/ocaml/rpc-generator/rpcgen-packlist
 %{_libdir}/ocaml/rpc*/*.cm[ixao]*
-%{_libdir}/ocaml/rpc*/librpc_auth_local.a
+%{_libdir}/ocaml/rpc*/librpc_auth_local*.a
 %if %{with ocaml_opt}
-%{_libdir}/ocaml/rpc*/rpc_*.a
+%{_libdir}/ocaml/rpc*/rpc*.a
 %endif
 %{_libdir}/ocaml/site-lib/rpc*
 %{_examplesdir}/%{name}-rpc-%{version}
