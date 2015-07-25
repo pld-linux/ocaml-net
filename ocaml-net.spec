@@ -1,3 +1,12 @@
+#
+# Conditional build:
+%bcond_without	ocaml_opt	# skip building native optimized binaries (bytecode is always built)
+
+# not yet available on x32 (ocaml 4.02.1), remove when upstream will support it
+%ifnarch %{ix86} %{x8664} arm aarch64 ppc sparc sparcv9
+%undefine	with_ocaml_opt
+%endif
+
 %define		apxs	/usr/sbin/apxs
 %define		apache	/usr/sbin/httpd
 Summary:	Modules for Internet programming in OCaml
@@ -608,7 +617,7 @@ Interfejs dla protokołu SMTP opisanego w RFC 2821.
 	-apxs %{apxs} \
 	-apache %{apache}
 
-%{__make} -j1 all opt
+%{__make} -j1 all %{?with_ocaml_opt:opt}
 
 %install
 rm -rf $RPM_BUILD_ROOT
