@@ -521,16 +521,6 @@ Unix shell functions.
 %description shell-devel -l pl.UTF-8
 Funkcje powłoki uniksowej.
 
-%package netunidata
-Summary:	Unicode lookup tables
-License:	BSD-like
-Group:		Development/Libraries
-Requires:	%{name}-netstring = %{version}-%{release}
-%requires_eq    ocaml
-
-%description netunidata
-Unicode lookup tables.
-
 %package netunidata-devel
 Summary:	Unicode lookup tables
 License:	BSD-like
@@ -837,15 +827,12 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 %{_libdir}/ocaml/site-lib/shell
 
-%files netunidata
-%defattr(644,root,root,755)
-%dir %{_libdir}/ocaml/netunidata
-%{_libdir}/ocaml/netunidata/*.o
-
 %files netunidata-devel
 %defattr(644,root,root,755)
+%dir %{_libdir}/ocaml/netunidata
 %{_libdir}/ocaml/netunidata/*.cm[ixao]*
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/netunidata/*.a
+%{_libdir}/ocaml/netunidata/*.o
 %endif
 %{_libdir}/ocaml/site-lib/netunidata
