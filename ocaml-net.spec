@@ -13,12 +13,12 @@
 Summary:	Modules for Internet programming in OCaml
 Summary(pl.UTF-8):	Moduły ułatwiające pisanie programów internetowych w OCamlu
 Name:		ocaml-net
-Version:	3.7.7
-Release:	6
+Version:	4.1.2
+Release:	1
 License:	GPL v2+ (nethttpd), LGPL v2+ (mod_caml), BSD-like (the rest)
 Group:		Libraries
 Source0:	http://download.camlcity.org/download/ocamlnet-%{version}.tar.gz
-# Source0-md5:	e15e0961d09057f0bbe4f69d6055506c
+# Source0-md5:	cc8b3434119e51b0e855b33a687e9c4b
 Patch0:		%{name}-buildfix.patch
 Patch1:		%{name}-lablgtk2.patch
 Patch2:		%{name}-apache-link.patch
@@ -140,51 +140,6 @@ modułu obsługi zdarzeń na deskryptorach plików.
 Ten pakiet zawiera pliki niezbędne do tworzenia programów używających
 biblioteki equeue GTK2.
 
-%package equeue-ssl
-Summary:	Event queue library for OCaml, SSL support
-Summary(pl.UTF-8):	Biblioteka obsługująca kolejkę zdarzeń dla OCamla, wsparcie dla SSL
-License:	BSD-like
-Group:		Libraries
-%requires_eq	ocaml-runtime
-
-%description equeue-ssl
-This package makes it possible to let Equeue cooperate with the event
-queue implementation of SSL.
-
-This package contains files needed to run bytecode executables using
-equeue-ssl library.
-
-%description equeue-ssl -l pl.UTF-8
-Pakiet ten umożliwia współpracę Equeue z implementacją kolejki zdarzeń
-w SSL.
-
-Ten pakiet zawiera moduł potrzebny do uruchamiania programów
-używających biblioteki equeue-ssl.
-
-%package equeue-ssl-devel
-Summary:	Equeue SSL support - development part
-Summary(pl.UTF-8):	Wsparcie dla SSL-a w equeue - cześć programistyczna
-License:	BSD-like
-Group:		Development/Libraries
-Requires:	%{name}-equeue-devel = %{version}-%{release}
-Requires:	%{name}-equeue-ssl = %{version}-%{release}
-%requires_eq	ocaml-ssl-devel
-%requires_eq	ocaml
-
-%description equeue-ssl-devel
-This package makes it possible to let Equeue cooperate with the event
-queue implementation of SSL.
-
-This package contains files needed to develop OCaml programs using
-equeue-ssl library.
-
-%description equeue-ssl-devel -l pl.UTF-8
-Pakiet ten umożliwia współpracę Equeue z implementacją kolejki zdarzeń
-w SSL.
-
-Ten pakiet zawiera pliki niezbędne do tworzenia programów używających
-biblioteki equeue-ssl.
-
 %package equeue-tcl
 Summary:	Event queue library for OCaml, Tcl support
 Summary(pl.UTF-8):	Biblioteka obsługująca kolejkę zdarzeń dla OCamla, wsparcie dla Tcl
@@ -292,23 +247,42 @@ zdarzeniach; umożliwia jednoczesną obsługę kilku połączeń.
 Ten pakiet zawiera pliki niezbędne do tworzenia programów używających
 biblioteki netclient.
 
-%package netgssapi-devel
+%package netgss-system
+Summary:	GSS-API generic definition
+Summary(pl.UTF-8):	Biblioteka do obsługi protokołu GSSAPI
+License:	GPL v2+
+Group:		Libraries
+Requires:	%{name}-netstring = %{version}-%{release}
+Requires:	%{name}-netsys = %{version}-%{release}
+%requires_eq	ocaml
+
+%description netgss-system
+GSSAPI library, part of Ocamlnet. This package contains the files
+needed to develop OCaml programs using netgss-system library.
+
+%description netgss-system -l pl.UTF-8
+Biblioteka do obsługi protokołu GSSAPI, część pakietu Ocamlnet. Ten
+pakiet zawiera pliki niezbędne do tworzenia programów używających
+biblioteki netgss-system.
+
+%package netgss-system-devel
 Summary:	GSS-API generic definition
 Summary(pl.UTF-8):	Biblioteka do obsługi protokołu GSSAPI
 License:	GPL v2+
 Group:		Development/Libraries
+Requires:	%{name}-netgss-system-devel = %{version}-%{release}
 Requires:	%{name}-netstring-devel = %{version}-%{release}
 Requires:	%{name}-netsys-devel = %{version}-%{release}
 %requires_eq	ocaml
 
-%description netgssapi-devel
+%description netgss-system-devel
 GSSAPI library, part of Ocamlnet. This package contains the files
-needed to develop OCaml programs using netgssapi library.
+needed to develop OCaml programs using netgss-system library.
 
-%description netgssapi-devel -l pl.UTF-8
+%description netgss-system-devel -l pl.UTF-8
 Biblioteka do obsługi protokołu GSSAPI, część pakietu Ocamlnet. Ten
 pakiet zawiera pliki niezbędne do tworzenia programów używających
-biblioteki netgssapi.
+biblioteki netgss-system.
 
 %package nethttpd-devel
 Summary:	HTTPd library
@@ -329,24 +303,6 @@ needed to develop OCaml programs using nethttpd library.
 Biblioteka do obsługi protokołu HTTP, część pakietu Ocamlnet. Ten
 pakiet zawiera pliki niezbędne do tworzenia programów używających
 biblioteki nethttpd.
-
-%package netmech-scram-devel
-Summary:	SCRAM mechanism for authentication
-Summary(pl.UTF-8):	Mechanizm autentykacji SCRAM
-License:	GPL v2+
-Group:		Development/Libraries
-Requires:	%{name}-netcamlbox-devel = %{version}-%{release}
-Requires:	%{name}-netplex-devel = %{version}-%{release}
-%requires_eq	ocaml
-
-%description netmech-scram-devel
-Netmech-scram library, part of Ocamlnet. This package contains the
-files needed to develop OCaml programs using netmech-scram library.
-
-%description netmech-scram-devel -l pl.UTF-8
-Biblioteka do obsługi wieloprocesorowych obliczeń, część pakietu
-Ocamlnet. Ten pakiet zawiera pliki niezbędne do tworzenia programów
-używających biblioteki netmech-scram.
 
 %package netmulticore-devel
 Summary:	Multi-processing for compute jobs
@@ -523,28 +479,11 @@ Funkcje do kompresji kanałow.
 Ten pakiet zawiera pliki niezbędne do tworzenia programów używających
 biblioteki netzip.
 
-%package pop3-devel
-Summary:	Post Office Protocol (POP3) library
-Summary(pl.UTF-8):	Biblioteka do obsługi POP3
-License:	BSD-like
-Group:		Development/Libraries
-Requires:	%{name}-netstring-devel = %{version}-%{release}
-%requires_eq	ocaml
-
-%description pop3-devel
-Post Office Protocol (POP3) library, part of Ocamlnet. This package
-contains files needed to develop OCaml programs using pop library.
-
-%description pop3-devel -l pl.UTF-8
-Biblioteka do obsługi POP3, część pakietu Ocamlnet. Ten pakiet zawiera
-pliki niezbędne do tworzenia programów używających biblioteki pop.
-
 %package rpc
 Summary:	Remote Procedure Call (RPC) libraries
 Summary(pl.UTF-8):	Biblioteki do obsługi RPC
 License:	BSD-like
 Group:		Development/Libraries
-Requires:	%{name}-equeue-ssl = %{version}-%{release}
 %requires_eq	ocaml
 
 %description rpc
@@ -558,7 +497,6 @@ Summary:	Remote Procedure Call (RPC) libraries - development part
 Summary(pl.UTF-8):	Biblioteki do obsługi RPC - część programistyczna
 License:	BSD-like
 Group:		Development/Libraries
-Requires:	%{name}-equeue-ssl-devel = %{version}-%{release}
 Requires:	%{name}-rpc = %{version}-%{release}
 %requires_eq	ocaml
 
@@ -583,20 +521,26 @@ Unix shell functions.
 %description shell-devel -l pl.UTF-8
 Funkcje powłoki uniksowej.
 
-%package smtp-devel
-Summary:	Simple Mail Transfer Protocol (SMTP) library
-Summary(pl.UTF-8):	Biblioteka do obsługi SMTP
+%package netunidata
+Summary:	Unicode lookup tables
+License:	BSD-like
+Group:		Development/Libraries
+Requires:	%{name}-netstring = %{version}-%{release}
+%requires_eq    ocaml
+
+%description netunidata
+Unicode lookup tables.
+
+%package netunidata-devel
+Summary:	Unicode lookup tables
 License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-netstring-devel = %{version}-%{release}
+Requires:	%{name}-netunidata-devel = %{version}-%{release}
 %requires_eq    ocaml
 
-%description smtp-devel
-Interface for the Simple Mail Tranfer Protocol (SMTP) as specified by
-RFC 2821.
-
-%description smtp-devel -l pl.UTF-8
-Interfejs dla protokołu SMTP opisanego w RFC 2821.
+%description netunidata-devel
+Unicode lookup tables.
 
 %prep
 %setup -q -n ocamlnet-%{version}
@@ -609,15 +553,13 @@ Interfejs dla protokołu SMTP opisanego w RFC 2821.
 ./configure \
 	-disable-gtk \
 	-enable-gtk2 \
-	-enable-ssl \
 	-enable-zip \
-	-enable-crypto \
+	-enable-gssapi \
 %if %{with apache}
 	-enable-apache \
 %else
 	-disable-apache \
 %endif
-	-with-rpc-auth-dh \
 	-enable-tcl \
 	-equeue-tcl-libs "-ltcl" \
 	-with-nethttpd \
@@ -635,7 +577,7 @@ install -d $RPM_BUILD_ROOT{%{_libdir}/ocaml/stublibs,%{_apachepkglibdir},%{_apac
 	DESTDIR=$RPM_BUILD_ROOT
 
 cd src
-for f in e* n* p* r* shell smtp ; do
+for f in e* n* p* r* shell ; do
 	[ -d $RPM_BUILD_ROOT%{_libdir}/ocaml/$f ] || continue
 	install -d $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/$f
 	mv $RPM_BUILD_ROOT%{_libdir}/ocaml/$f/META \
@@ -678,14 +620,13 @@ EOF
 # not sure about *.o
 rm $RPM_BUILD_ROOT%{_libdir}/ocaml/*/*.mli
 
-install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-{netcgi,equeue,netcamlbox,netmulticore,netclient,nethttpd,pop3,rpc}-%{version}
+install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-{netcgi,equeue,netcamlbox,netmulticore,netclient,nethttpd,rpc}-%{version}
 cp -r examples/camlbox/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-netcamlbox-%{version}
 cp -r examples/cgi/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-netcgi-%{version}
 cp -r examples/equeue/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-equeue-%{version}
 cp -r examples/multicore/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-netmulticore-%{version}
 cp -r examples/netclient/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-netclient-%{version}
 cp -r examples/nethttpd/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-nethttpd-%{version}
-cp -r examples/pop/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-pop3-%{version}
 cp -r examples/rpc/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-rpc-%{version}
 
 %clean
@@ -731,21 +672,6 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 %{_libdir}/ocaml/site-lib/equeue-gtk2
 
-%files equeue-ssl
-%defattr(644,root,root,755)
-%dir %{_libdir}/ocaml/equeue-ssl
-%attr(755,root,root) %{_libdir}/ocaml/stublibs/dllequeue_ssl.so
-%{_libdir}/ocaml/stublibs/dllequeue_ssl.so.owner
-
-%files equeue-ssl-devel
-%defattr(644,root,root,755)
-%{_libdir}/ocaml/equeue-ssl/*.cm[ixao]*
-%{_libdir}/ocaml/equeue-ssl/libequeue_ssl*.a
-%if %{with ocaml_opt}
-%{_libdir}/ocaml/equeue-ssl/equeue_ssl*.a
-%endif
-%{_libdir}/ocaml/site-lib/equeue-ssl
-
 %files equeue-tcl
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/equeue-tcl
@@ -781,14 +707,19 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/ocaml/site-lib/netclient
 %{_examplesdir}/%{name}-netclient-%{version}
 
-%files netgssapi-devel
+%files netgss-system
 %defattr(644,root,root,755)
-%dir %{_libdir}/ocaml/netgssapi
-%{_libdir}/ocaml/netgssapi/*.cm[ixao]*
+%dir %{_libdir}/ocaml/netgss-system
+%attr(755,root,root) %{_libdir}/ocaml/stublibs/dllnetgss-system.so
+%{_libdir}/ocaml/stublibs/dllnetgss-system.so.owner
+
+%files netgss-system-devel
+%defattr(644,root,root,755)
+%{_libdir}/ocaml/netgss-system/*.cm[ixao]*
 %if %{with ocaml_opt}
-%{_libdir}/ocaml/netgssapi/*.a
+%{_libdir}/ocaml/netgss-system/*.a
 %endif
-%{_libdir}/ocaml/site-lib/netgssapi
+%{_libdir}/ocaml/site-lib/netgss-system
 
 %files nethttpd-devel
 %defattr(644,root,root,755)
@@ -799,15 +730,6 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 %{_libdir}/ocaml/site-lib/nethttpd
 %{_examplesdir}/%{name}-nethttpd-%{version}
-
-%files netmech-scram-devel
-%defattr(644,root,root,755)
-%dir %{_libdir}/ocaml/netmech-scram
-%{_libdir}/ocaml/netmech-scram/*.cm[ixa]*
-%if %{with ocaml_opt}
-%{_libdir}/ocaml/netmech-scram/*.a
-%endif
-%{_libdir}/ocaml/site-lib/netmech-scram
 
 %files netmulticore-devel
 %defattr(644,root,root,755)
@@ -848,15 +770,11 @@ rm -rf $RPM_BUILD_ROOT
 %files netstring
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/netstring
-%if %{with ocaml_opt}
-%{_libdir}/ocaml/netstring/*.o
-%endif
 %attr(755,root,root) %{_libdir}/ocaml/stublibs/dllnetaccel_c.so
 %{_libdir}/ocaml/stublibs/dllnetaccel_c.so.owner
 
 %files netstring-devel
 %defattr(644,root,root,755)
-%{_libdir}/ocaml/netstring/netdb-packlist
 %{_libdir}/ocaml/netstring/*.cm[ixao]*
 %{_libdir}/ocaml/netstring/libnetaccel_c.a
 %if %{with ocaml_opt}
@@ -890,16 +808,6 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 %{_libdir}/ocaml/site-lib/netzip
 
-%files pop3-devel
-%defattr(644,root,root,755)
-%dir %{_libdir}/ocaml/pop
-%{_libdir}/ocaml/pop/*.cm[ixao]*
-%if %{with ocaml_opt}
-%{_libdir}/ocaml/pop/*.a
-%endif
-%{_libdir}/ocaml/site-lib/pop
-%{_examplesdir}/%{name}-pop3-%{version}
-
 %files rpc
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ocamlrpcgen
@@ -910,9 +818,7 @@ rm -rf $RPM_BUILD_ROOT
 %files rpc-devel
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/rpc
-%dir %{_libdir}/ocaml/rpc-auth-dh
 %dir %{_libdir}/ocaml/rpc-generator
-%dir %{_libdir}/ocaml/rpc-ssl
 %{_libdir}/ocaml/rpc-generator/rpcgen-packlist
 %{_libdir}/ocaml/rpc*/*.cm[ixao]*
 %{_libdir}/ocaml/rpc*/librpc_auth_local*.a
@@ -931,11 +837,15 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 %{_libdir}/ocaml/site-lib/shell
 
-%files smtp-devel
+%files netunidata
 %defattr(644,root,root,755)
-%dir %{_libdir}/ocaml/smtp
-%{_libdir}/ocaml/smtp/*.cm[ixao]*
+%dir %{_libdir}/ocaml/netunidata
+%{_libdir}/ocaml/netunidata/*.o
+
+%files netunidata-devel
+%defattr(644,root,root,755)
+%{_libdir}/ocaml/netunidata/*.cm[ixao]*
 %if %{with ocaml_opt}
-%{_libdir}/ocaml/smtp/*.a
+%{_libdir}/ocaml/netunidata/*.a
 %endif
-%{_libdir}/ocaml/site-lib/smtp
+%{_libdir}/ocaml/site-lib/netunidata
