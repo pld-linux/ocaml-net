@@ -707,8 +707,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/ocaml/netgss-system/*.cm[ixao]*
 %if %{with ocaml_opt}
-%{_libdir}/ocaml/netgss-system/*.a
+%{_libdir}/ocaml/netgss-system/netgss-system*.a
 %endif
+%{_libdir}/ocaml/netgss-system/libnetgss-system*.a
 %{_libdir}/ocaml/site-lib/netgss-system
 
 %files nethttpd-devel
