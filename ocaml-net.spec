@@ -13,12 +13,12 @@
 Summary:	Modules for Internet programming in OCaml
 Summary(pl.UTF-8):	Moduły ułatwiające pisanie programów internetowych w OCamlu
 Name:		ocaml-net
-Version:	4.1.2
-Release:	2
+Version:	4.1.5
+Release:	1
 License:	GPL v2+ (nethttpd), LGPL v2+ (mod_caml), BSD-like (the rest)
 Group:		Libraries
 Source0:	http://download.camlcity.org/download/ocamlnet-%{version}.tar.gz
-# Source0-md5:	cc8b3434119e51b0e855b33a687e9c4b
+# Source0-md5:	9db5012d73fc8fe8936fb9a0726e5d04
 Patch0:		%{name}-buildfix.patch
 Patch1:		%{name}-lablgtk2.patch
 Patch2:		%{name}-apache-link.patch
@@ -763,6 +763,9 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/ocaml/netstring
 %attr(755,root,root) %{_libdir}/ocaml/stublibs/dllnetaccel_c.so
 %{_libdir}/ocaml/stublibs/dllnetaccel_c.so.owner
+%if %{with ocaml_opt}
+%{_libdir}/ocaml/netstring/*.o
+%endif
 
 %files netstring-devel
 %defattr(644,root,root,755)
