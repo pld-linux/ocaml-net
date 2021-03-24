@@ -13,12 +13,12 @@
 Summary:	Modules for Internet programming in OCaml
 Summary(pl.UTF-8):	Moduły ułatwiające pisanie programów internetowych w OCamlu
 Name:		ocaml-net
-Version:	4.1.5
+Version:	4.1.8
 Release:	1
 License:	GPL v2+ (nethttpd), LGPL v2+ (mod_caml), BSD-like (the rest)
 Group:		Libraries
 Source0:	http://download.camlcity.org/download/ocamlnet-%{version}.tar.gz
-# Source0-md5:	9db5012d73fc8fe8936fb9a0726e5d04
+# Source0-md5:	0a76da5734e1861175f575c4e4ed3896
 Patch0:		%{name}-buildfix.patch
 Patch1:		%{name}-lablgtk2.patch
 Patch2:		%{name}-apache-link.patch
@@ -31,7 +31,6 @@ BuildRequires:	apache-devel >= 2.0
 BuildRequires:	ncurses-devel
 BuildRequires:	ocaml >= 1:3.09.2
 BuildRequires:	ocaml-camlp4
-BuildRequires:	ocaml-cryptgps-devel
 BuildRequires:	ocaml-cryptokit-devel
 BuildRequires:	ocaml-findlib
 BuildRequires:	ocaml-findlib-devel
@@ -73,7 +72,7 @@ Requires:	%{name}-netplex-devel = %{version}-%{release}
 Requires:	%{name}-netstring-devel = %{version}-%{release}
 Requires:	%{name}-netsys-devel = %{version}-%{release}
 Obsoletes:	ocaml-net-cgi-devel
-%requires_eq	ocaml
+%requires_eq ocaml
 
 %description netcgi-devel
 Common Gateway Interface library, part of Ocamlnet. This package
@@ -100,7 +99,7 @@ Summary(pl.UTF-8):	Biblioteka obsługująca kolejkę zdarzeń dla OCamla
 License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-netsys-devel = %{version}-%{release}
-%requires_eq	ocaml
+%requires_eq ocaml
 Obsoletes:	ocaml-equeue-devel
 
 %description equeue-devel
@@ -124,7 +123,7 @@ License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-equeue-devel = %{version}-%{release}
 Requires:	ocaml-lablgtk2-devel
-%requires_eq	ocaml
+%requires_eq ocaml
 
 %description equeue-gtk2-devel
 Equeue provides a generic event queue module, and a specific module
@@ -145,8 +144,8 @@ Summary:	Event queue library for OCaml, Tcl support
 Summary(pl.UTF-8):	Biblioteka obsługująca kolejkę zdarzeń dla OCamla, wsparcie dla Tcl
 License:	BSD-like
 Group:		Libraries
-%requires_eq	ocaml-runtime
-%requires_eq	ocaml-labltk
+%requires_eq ocaml-runtime
+%requires_eq ocaml-labltk
 Obsoletes:	ocaml-equeue-tcl
 
 %description equeue-tcl
@@ -170,8 +169,8 @@ License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-equeue-devel = %{version}-%{release}
 Requires:	%{name}-equeue-tcl = %{version}-%{release}
-%requires_eq	ocaml-labltk-devel
-%requires_eq	ocaml
+%requires_eq ocaml-labltk-devel
+%requires_eq ocaml
 Obsoletes:	ocaml-equeue-tcl-devel
 
 %description equeue-tcl-devel
@@ -194,7 +193,7 @@ Summary(pl.UTF-8):	Szybki mechanizm IPC dla OCamla
 License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-netsys-devel = %{version}-%{release}
-%requires_eq	ocaml
+%requires_eq ocaml
 
 %description netcamlbox-devel
 Camlboxes are a fast IPC mechanism to send Ocaml values from one
@@ -224,7 +223,7 @@ License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-equeue-devel = %{version}-%{release}
 Requires:	%{name}-netstring-devel = %{version}-%{release}
-%requires_eq	ocaml
+%requires_eq ocaml
 Obsoletes:	ocaml-netclient-devel
 
 %description netclient-devel
@@ -254,7 +253,7 @@ License:	GPL v2+
 Group:		Libraries
 Requires:	%{name}-netstring = %{version}-%{release}
 Requires:	%{name}-netsys = %{version}-%{release}
-%requires_eq	ocaml
+%requires_eq ocaml
 
 %description netgss-system
 GSSAPI library, part of Ocamlnet. This package contains the files
@@ -273,7 +272,7 @@ Group:		Development/Libraries
 Requires:	%{name}-netgss-system-devel = %{version}-%{release}
 Requires:	%{name}-netstring-devel = %{version}-%{release}
 Requires:	%{name}-netsys-devel = %{version}-%{release}
-%requires_eq	ocaml
+%requires_eq ocaml
 
 %description netgss-system-devel
 GSSAPI library, part of Ocamlnet. This package contains the files
@@ -292,8 +291,8 @@ Group:		Development/Libraries
 Requires:	%{name}-equeue-devel = %{version}-%{release}
 Requires:	%{name}-netcgi-devel = %{version}-%{release}
 Requires:	%{name}-netplex-devel = %{version}-%{release}
-%requires_eq	ocaml-pcre-devel
-%requires_eq	ocaml
+%requires_eq ocaml-pcre-devel
+%requires_eq ocaml
 
 %description nethttpd-devel
 HTTPd library, part of Ocamlnet. This package contains the files
@@ -311,7 +310,7 @@ License:	GPL v2+
 Group:		Development/Libraries
 Requires:	%{name}-netcamlbox-devel = %{version}-%{release}
 Requires:	%{name}-netplex-devel = %{version}-%{release}
-%requires_eq	ocaml
+%requires_eq ocaml
 
 %description netmulticore-devel
 Netmcore library, part of Ocamlnet. This package contains the files
@@ -327,8 +326,8 @@ Summary:	Server framework
 Summary(pl.UTF-8):	Szkielet serwerowy
 License:	BSD-like
 Group:		Libraries
-%requires_eq	ocaml-runtime
-%requires_eq	ocaml-labltk
+%requires_eq ocaml-runtime
+%requires_eq ocaml-labltk
 
 %description netplex
 Server framework.
@@ -352,7 +351,7 @@ Requires:	%{name}-netplex = %{version}-%{release}
 Requires:	%{name}-netstring-devel = %{version}-%{release}
 Requires:	%{name}-netsys-devel = %{version}-%{release}
 Requires:	%{name}-rpc-devel = %{version}-%{release}
-%requires_eq	ocaml
+%requires_eq ocaml
 
 %description netplex-devel
 Server framework.
@@ -372,7 +371,7 @@ Summary(pl.UTF-8):	Obsługa pamięci dzielonej - pakiet programistyczny
 License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-netsys-devel = %{version}-%{release}
-%requires_eq	ocaml
+%requires_eq ocaml
 
 %description netshm-devel
 Shared memory support.
@@ -392,8 +391,8 @@ Summary(pl.UTF-8):	Biblioteka do przetwarzania napisów
 License:	BSD-like
 Group:		Libraries
 Requires:	%{name}-netsys-devel = %{version}-%{release}
-%requires_eq	ocaml-pcre-devel
-%requires_eq	ocaml
+%requires_eq ocaml-pcre-devel
+%requires_eq ocaml
 
 %description netstring
 String processing library, part of Ocamlnet.
@@ -408,8 +407,8 @@ License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-netstring = %{version}-%{release}
 Requires:	%{name}-netsys-devel = %{version}-%{release}
-%requires_eq	ocaml-pcre-devel
-%requires_eq	ocaml
+%requires_eq ocaml-pcre-devel
+%requires_eq ocaml
 
 %description netstring-devel
 String processing library, part of Ocamlnet. This package contains
@@ -425,7 +424,7 @@ Summary:	OS-specific functions
 Summary(pl.UTF-8):	Funkcje specyficzne dla systemu operacyjnego
 License:	BSD-like
 Group:		Libraries
-%requires_eq	ocaml-runtime
+%requires_eq ocaml-runtime
 
 %description netsys
 OS-specific functions.
@@ -445,7 +444,7 @@ Summary(pl.UTF-8):	Funkcje specyficzne dla systemu operacyjnego - cześć progra
 License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-netsys = %{version}-%{release}
-%requires_eq	ocaml
+%requires_eq ocaml
 
 %description netsys-devel
 OS-specific functions.
@@ -465,7 +464,7 @@ Summary(pl.UTF-8):	Funkcje do kompresji kanałow - cześć programistyczna
 License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-netstring-devel = %{version}-%{release}
-%requires_eq	ocaml
+%requires_eq ocaml
 
 %description netzip-devel
 Gzip channels functions.
@@ -484,7 +483,7 @@ Summary:	Remote Procedure Call (RPC) libraries
 Summary(pl.UTF-8):	Biblioteki do obsługi RPC
 License:	BSD-like
 Group:		Development/Libraries
-%requires_eq	ocaml
+%requires_eq ocaml
 
 %description rpc
 Remote Procedure Call (RPC) libraries.
@@ -498,7 +497,7 @@ Summary(pl.UTF-8):	Biblioteki do obsługi RPC - część programistyczna
 License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-rpc = %{version}-%{release}
-%requires_eq	ocaml
+%requires_eq ocaml
 
 %description rpc-devel
 Remote Procedure Call (RPC) libraries - development part.
@@ -569,11 +568,11 @@ install -d $RPM_BUILD_ROOT{%{_libdir}/ocaml/stublibs,%{_apachepkglibdir},%{_apac
 cd src
 for f in e* n* p* r* shell ; do
 	[ -d $RPM_BUILD_ROOT%{_libdir}/ocaml/$f ] || continue
-	install -d $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/$f
-	mv $RPM_BUILD_ROOT%{_libdir}/ocaml/$f/META \
-		$RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/$f/
 	echo "directory = \"+$f\"" \
-		>> $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/$f/META
+		>> $RPM_BUILD_ROOT%{_libdir}/ocaml/$f/META
+	install -d $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/$f
+	ln -sr $RPM_BUILD_ROOT%{_libdir}/ocaml/$f/META \
+		$RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/$f/
 done
 cd ..
 
@@ -629,6 +628,7 @@ rm -rf $RPM_BUILD_ROOT
 %files netcgi-devel
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/netcgi*
+%{_libdir}/ocaml/netcgi*/META
 %{_libdir}/ocaml/netcgi*/*.cm[ixao]*
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/netcgi*/*.a
@@ -646,6 +646,7 @@ rm -rf $RPM_BUILD_ROOT
 %files equeue-devel
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/equeue
+%{_libdir}/ocaml/equeue/META
 %{_libdir}/ocaml/equeue/*.cm[ixao]*
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/equeue/*.a
@@ -656,6 +657,7 @@ rm -rf $RPM_BUILD_ROOT
 %files equeue-gtk2-devel
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/equeue-gtk2
+%{_libdir}/ocaml/equeue-gtk2/META
 %{_libdir}/ocaml/equeue-gtk2/*.cm[ixao]*
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/equeue-gtk2/*.a
@@ -665,6 +667,7 @@ rm -rf $RPM_BUILD_ROOT
 %files equeue-tcl
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/equeue-tcl
+%{_libdir}/ocaml/equeue-tcl/META
 %attr(755,root,root) %{_libdir}/ocaml/stublibs/dllequeue_tcl.so
 %{_libdir}/ocaml/stublibs/dllequeue_tcl.so.owner
 
@@ -680,6 +683,7 @@ rm -rf $RPM_BUILD_ROOT
 %files netcamlbox-devel
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/netcamlbox
+%{_libdir}/ocaml/netcamlbox/META
 %{_libdir}/ocaml/netcamlbox/*.cm[ixao]*
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/netcamlbox/*.a
@@ -690,6 +694,7 @@ rm -rf $RPM_BUILD_ROOT
 %files netclient-devel
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/netclient
+%{_libdir}/ocaml/netclient/META
 %{_libdir}/ocaml/netclient/*.cm[ixao]*
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/netclient/*.a
@@ -700,6 +705,7 @@ rm -rf $RPM_BUILD_ROOT
 %files netgss-system
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/netgss-system
+%{_libdir}/ocaml/netgss-system/META
 %attr(755,root,root) %{_libdir}/ocaml/stublibs/dllnetgss-system.so
 %{_libdir}/ocaml/stublibs/dllnetgss-system.so.owner
 
@@ -715,6 +721,7 @@ rm -rf $RPM_BUILD_ROOT
 %files nethttpd-devel
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/nethttpd
+%{_libdir}/ocaml/nethttpd/META
 %{_libdir}/ocaml/nethttpd/*.cm[ixa]*
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/nethttpd/*.a
@@ -725,6 +732,7 @@ rm -rf $RPM_BUILD_ROOT
 %files netmulticore-devel
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/netmulticore
+%{_libdir}/ocaml/netmulticore/META
 %{_libdir}/ocaml/netmulticore/*.cm[ixa]*
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/netmulticore/*.a
@@ -736,6 +744,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/netplex-admin
 %dir %{_libdir}/ocaml/netplex
+%{_libdir}/ocaml/netplex/META
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/netplex/*.o
 %endif
@@ -752,6 +761,7 @@ rm -rf $RPM_BUILD_ROOT
 %files netshm-devel
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/netshm
+%{_libdir}/ocaml/netshm/META
 %{_libdir}/ocaml/netshm/*.cm[ixao]*
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/netshm/*.a
@@ -761,6 +771,7 @@ rm -rf $RPM_BUILD_ROOT
 %files netstring
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/netstring
+%{_libdir}/ocaml/netstring/META
 %attr(755,root,root) %{_libdir}/ocaml/stublibs/dllnetaccel_c.so
 %{_libdir}/ocaml/stublibs/dllnetaccel_c.so.owner
 %if %{with ocaml_opt}
@@ -779,6 +790,7 @@ rm -rf $RPM_BUILD_ROOT
 %files netsys
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/netsys
+%{_libdir}/ocaml/netsys/META
 %{_libdir}/ocaml/netsys/*.o
 %attr(755,root,root) %{_libdir}/ocaml/stublibs/dllnetsys.so
 %{_libdir}/ocaml/stublibs/dllnetsys.so.owner
@@ -796,6 +808,7 @@ rm -rf $RPM_BUILD_ROOT
 %files netzip-devel
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/netzip
+%{_libdir}/ocaml/netzip/META
 %{_libdir}/ocaml/netzip/*.cm[ixao]*
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/netzip/*.a
@@ -806,13 +819,16 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ocamlrpcgen
 %dir %{_libdir}/ocaml/rpc-auth-local
+%{_libdir}/ocaml/rpc-auth-local/META
 %attr(755,root,root) %{_libdir}/ocaml/stublibs/dllrpc_auth_local.so
 %{_libdir}/ocaml/stublibs/dllrpc_auth_local.so.owner
 
 %files rpc-devel
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/rpc
+%{_libdir}/ocaml/rpc/META
 %dir %{_libdir}/ocaml/rpc-generator
+%{_libdir}/ocaml/rpc-generator/META
 %{_libdir}/ocaml/rpc-generator/rpcgen-packlist
 %{_libdir}/ocaml/rpc*/*.cm[ixao]*
 %{_libdir}/ocaml/rpc*/librpc_auth_local*.a
@@ -825,6 +841,7 @@ rm -rf $RPM_BUILD_ROOT
 %files shell-devel
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/shell
+%{_libdir}/ocaml/shell/META
 %{_libdir}/ocaml/shell/*.cm[ixao]*
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/shell/*.a
@@ -834,6 +851,7 @@ rm -rf $RPM_BUILD_ROOT
 %files netunidata-devel
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/netunidata
+%{_libdir}/ocaml/netunidata/META
 %{_libdir}/ocaml/netunidata/*.cm[ixao]*
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/netunidata/*.a

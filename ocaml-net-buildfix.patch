@@ -1,9 +1,9 @@
-diff -urN ocamlnet-2.2.9/src/rpc-auth-local/rpclocal.c ocamlnet-2.2.9.new/src/rpc-auth-local/rpclocal.c
---- ocamlnet-2.2.9/src/rpc-auth-local/rpclocal.c	2007-11-01 23:12:33.000000000 +0100
-+++ ocamlnet-2.2.9.new/src/rpc-auth-local/rpclocal.c	2008-07-10 21:38:55.602253120 +0200
-@@ -3,6 +3,8 @@
-  *
-  */
+diff -urNp -x '*.orig' ocamlnet-4.1.5.org/src/rpc-auth-local/rpclocal.c ocamlnet-4.1.5/src/rpc-auth-local/rpclocal.c
+--- ocamlnet-4.1.5.org/src/rpc-auth-local/rpclocal.c	2017-12-06 21:20:53.000000000 +0100
++++ ocamlnet-4.1.5/src/rpc-auth-local/rpclocal.c	2021-03-24 23:42:02.899293672 +0100
+@@ -8,6 +8,8 @@
+ 
+ #include "config.h"
  
 +#define _GNU_SOURCE
 +

@@ -1,6 +1,7 @@
---- ocamlnet-3.7.7/configure~	2014-11-16 11:54:23.000000000 +0100
-+++ ocamlnet-3.7.7/configure	2014-11-16 11:57:03.500179144 +0100
-@@ -708,7 +708,7 @@
+diff -urNp -x '*.orig' ocamlnet-4.1.5.org/configure ocamlnet-4.1.5/configure
+--- ocamlnet-4.1.5.org/configure	2017-12-06 21:20:50.000000000 +0100
++++ ocamlnet-4.1.5/configure	2021-03-24 23:42:03.435939925 +0100
+@@ -941,7 +941,7 @@ exit 0
  EOF
      # Note: this newer API is never broken in the sense checked below, i.e.
      # such lablgtk2 versions do not exist.
