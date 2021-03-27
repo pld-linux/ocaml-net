@@ -14,7 +14,7 @@ Summary:	Modules for Internet programming in OCaml
 Summary(pl.UTF-8):	Moduły ułatwiające pisanie programów internetowych w OCamlu
 Name:		ocaml-net
 Version:	4.1.8
-Release:	1
+Release:	2
 License:	GPL v2+ (nethttpd), LGPL v2+ (mod_caml), BSD-like (the rest)
 Group:		Libraries
 Source0:	http://download.camlcity.org/download/ocamlnet-%{version}.tar.gz
@@ -540,6 +540,7 @@ Unicode lookup tables.
 %build
 # no %%configure, please
 ./configure \
+	-datadir %{_datadir}/%{name} \
 	-disable-gtk \
 	-enable-gtk2 \
 	-enable-zip \
@@ -564,17 +565,6 @@ install -d $RPM_BUILD_ROOT{%{_libdir}/ocaml/stublibs,%{_apachepkglibdir},%{_apac
 %{__make} -j1 install \
 	OCAMLFIND_DESTDIR=$RPM_BUILD_ROOT%{_libdir}/ocaml \
 	DESTDIR=$RPM_BUILD_ROOT
-
-cd src
-for f in e* n* p* r* shell ; do
-	[ -d $RPM_BUILD_ROOT%{_libdir}/ocaml/$f ] || continue
-	echo "directory = \"+$f\"" \
-		>> $RPM_BUILD_ROOT%{_libdir}/ocaml/$f/META
-	install -d $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/$f
-	ln -sr $RPM_BUILD_ROOT%{_libdir}/ocaml/$f/META \
-		$RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/$f/
-done
-cd ..
 
 %if %{with apache}
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/ocaml/netcgi2-apache/500netcgi_apache.info
@@ -633,7 +623,6 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/netcgi*/*.a
 %endif
-%{_libdir}/ocaml/site-lib/*cgi*
 %{_examplesdir}/%{name}-netcgi-%{version}
 
 %if %{with apache}
@@ -651,7 +640,6 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/equeue/*.a
 %endif
-%{_libdir}/ocaml/site-lib/equeue
 %{_examplesdir}/%{name}-equeue-%{version}
 
 %files equeue-gtk2-devel
@@ -662,7 +650,6 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/equeue-gtk2/*.a
 %endif
-%{_libdir}/ocaml/site-lib/equeue-gtk2
 
 %files equeue-tcl
 %defattr(644,root,root,755)
@@ -678,7 +665,6 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/equeue-tcl/equeue_tcl*.a
 %endif
-%{_libdir}/ocaml/site-lib/equeue-tcl
 
 %files netcamlbox-devel
 %defattr(644,root,root,755)
@@ -688,7 +674,6 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/netcamlbox/*.a
 %endif
-%{_libdir}/ocaml/site-lib/netcamlbox
 %{_examplesdir}/%{name}-netcamlbox-%{version}
 
 %files netclient-devel
@@ -699,7 +684,6 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/netclient/*.a
 %endif
-%{_libdir}/ocaml/site-lib/netclient
 %{_examplesdir}/%{name}-netclient-%{version}
 
 %files netgss-system
@@ -716,7 +700,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/ocaml/netgss-system/netgss-system*.a
 %endif
 %{_libdir}/ocaml/netgss-system/libnetgss-system*.a
-%{_libdir}/ocaml/site-lib/netgss-system
 
 %files nethttpd-devel
 %defattr(644,root,root,755)
@@ -726,7 +709,6 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/nethttpd/*.a
 %endif
-%{_libdir}/ocaml/site-lib/nethttpd
 %{_examplesdir}/%{name}-nethttpd-%{version}
 
 %files netmulticore-devel
@@ -737,7 +719,6 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/netmulticore/*.a
 %endif
-%{_libdir}/ocaml/site-lib/netmulticore
 %{_examplesdir}/%{name}-netmulticore-%{version}
 
 %files netplex
@@ -756,7 +737,6 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/netplex/*.a
 %endif
-%{_libdir}/ocaml/site-lib/netplex
 
 %files netshm-devel
 %defattr(644,root,root,755)
@@ -766,7 +746,6 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/netshm/*.a
 %endif
-%{_libdir}/ocaml/site-lib/netshm
 
 %files netstring
 %defattr(644,root,root,755)
@@ -785,7 +764,6 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/netstring/netstring*.a
 %endif
-%{_libdir}/ocaml/site-lib/netstring
 
 %files netsys
 %defattr(644,root,root,755)
@@ -803,7 +781,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/ocaml/netsys/netsys*.a
 %endif
 %{_libdir}/ocaml/netsys/netsys_c_event.h
-%{_libdir}/ocaml/site-lib/netsys
 
 %files netzip-devel
 %defattr(644,root,root,755)
@@ -813,7 +790,6 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/netzip/*.a
 %endif
-%{_libdir}/ocaml/site-lib/netzip
 
 %files rpc
 %defattr(644,root,root,755)
@@ -835,7 +811,6 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/rpc*/rpc*.a
 %endif
-%{_libdir}/ocaml/site-lib/rpc*
 %{_examplesdir}/%{name}-rpc-%{version}
 
 %files shell-devel
@@ -846,7 +821,6 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/shell/*.a
 %endif
-%{_libdir}/ocaml/site-lib/shell
 
 %files netunidata-devel
 %defattr(644,root,root,755)
@@ -857,4 +831,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/ocaml/netunidata/*.a
 %{_libdir}/ocaml/netunidata/*.o
 %endif
-%{_libdir}/ocaml/site-lib/netunidata
+%{_datadir}/ocaml-net
