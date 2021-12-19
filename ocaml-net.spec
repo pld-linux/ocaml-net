@@ -65,53 +65,6 @@ ocaml-net documentation.
 %description doc -l pl.UTF-8
 Dokumentacja dla pakietów ocaml-net.
 
-%package netcgi
-Summary:	Common Gateway Interface library
-Summary(pl.UTF-8):	Biblioteka do tworzenia skryptów CGI
-Group:		Libraries
-License:	BSD-like
-%requires_eq	ocaml-runtime
-Conflicts:	ocaml-net-netcgi-devel < 4.1.9-1
-
-%description netcgi
-Common Gateway Interface library, part of Ocamlnet.
-
-%description netcgi -l pl.UTF-8
-Biblioteka do tworzenia skryptów CGI, część pakietu Ocamlnet.
-
-%package netcgi-devel
-Summary:	Common Gateway Interface library - development part
-Summary(pl.UTF-8):	Biblioteka do tworzenia skryptów CGI - część programistyczna
-License:	BSD-like
-Group:		Development/Libraries
-Requires:	%{name}-netplex-devel = %{version}-%{release}
-Requires:	%{name}-netstring-devel = %{version}-%{release}
-Requires:	%{name}-netsys-devel = %{version}-%{release}
-%requires_eq	ocaml
-Obsoletes:	ocaml-net-cgi-devel < 3
-
-%description netcgi-devel
-Common Gateway Interface library, part of Ocamlnet. This package
-contains files needed to develop OCaml programs using netcgi library.
-
-%description netcgi-devel -l pl.UTF-8
-Biblioteka do tworzenia skryptów CGI, część pakietu Ocamlnet. Ten
-pakiet zawiera pliki niezbędne do tworzenia programów używających
-biblioteki netcgi.
-
-%package -n apache-mod_netcgi
-Summary:	Apache mod_netcfg module
-Summary(pl.UTF-8):	Moduł Apache'a mod_netcgi
-License:	LGPL v2+
-Group:		Networking/Daemons/HTTP
-Requires:	apache(modules-api) = %apache_modules_api
-
-%description -n apache-mod_netcgi
-Apache mod_netcfg module.
-
-%description -n apache-mod_netcgi -l pl.UTF-8
-Moduł Apache'a mod_netcgi.
-
 %package equeue
 Summary:	Event queue library for OCaml
 Summary(pl.UTF-8):	Biblioteka obsługująca kolejkę zdarzeń dla OCamla
@@ -289,6 +242,53 @@ dzielonej, gdzie mogą byc bezpośrednio odczytywane przez odbiorcę.
 
 Ten pakiet zawiera pliki niezbędne do tworzenia programów używających
 biblioteki netcamlbox.
+
+%package netcgi
+Summary:	Common Gateway Interface library
+Summary(pl.UTF-8):	Biblioteka do tworzenia skryptów CGI
+Group:		Libraries
+License:	BSD-like
+%requires_eq	ocaml-runtime
+Conflicts:	ocaml-net-netcgi-devel < 4.1.9-1
+
+%description netcgi
+Common Gateway Interface library, part of Ocamlnet.
+
+%description netcgi -l pl.UTF-8
+Biblioteka do tworzenia skryptów CGI, część pakietu Ocamlnet.
+
+%package netcgi-devel
+Summary:	Common Gateway Interface library - development part
+Summary(pl.UTF-8):	Biblioteka do tworzenia skryptów CGI - część programistyczna
+License:	BSD-like
+Group:		Development/Libraries
+Requires:	%{name}-netplex-devel = %{version}-%{release}
+Requires:	%{name}-netstring-devel = %{version}-%{release}
+Requires:	%{name}-netsys-devel = %{version}-%{release}
+%requires_eq	ocaml
+Obsoletes:	ocaml-net-cgi-devel < 3
+
+%description netcgi-devel
+Common Gateway Interface library, part of Ocamlnet. This package
+contains files needed to develop OCaml programs using netcgi library.
+
+%description netcgi-devel -l pl.UTF-8
+Biblioteka do tworzenia skryptów CGI, część pakietu Ocamlnet. Ten
+pakiet zawiera pliki niezbędne do tworzenia programów używających
+biblioteki netcgi.
+
+%package -n apache-mod_netcgi
+Summary:	Apache mod_netcfg module
+Summary(pl.UTF-8):	Moduł Apache'a mod_netcgi
+License:	LGPL v2+
+Group:		Networking/Daemons/HTTP
+Requires:	apache(modules-api) = %apache_modules_api
+
+%description -n apache-mod_netcgi
+Apache mod_netcfg module.
+
+%description -n apache-mod_netcgi -l pl.UTF-8
+Moduł Apache'a mod_netcgi.
 
 %package netclient
 Summary:	HTTP 1.1 client for OCaml
@@ -822,38 +822,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc LICENSE* ChangeLog RELNOTES doc/html-main
 
-%files netcgi
-%defattr(644,root,root,755)
-%dir %{_libdir}/ocaml/netcgi2
-%{_libdir}/ocaml/netcgi2/META
-%{_libdir}/ocaml/netcgi2/*.cma
-%dir %{_libdir}/ocaml/netcgi2-plex
-%{_libdir}/ocaml/netcgi2-plex/META
-%{_libdir}/ocaml/netcgi2-plex/*.cma
-%if %{with ocaml_opt}
-%attr(755,root,root) %{_libdir}/ocaml/netcgi2/*.cmxs
-%attr(755,root,root) %{_libdir}/ocaml/netcgi2-plex/*.cmxs
-%endif
-
-%files netcgi-devel
-%defattr(644,root,root,755)
-%{_libdir}/ocaml/netcgi2/*.cmi
-%{_libdir}/ocaml/netcgi2-plex/*.cmi
-%if %{with ocaml_opt}
-%{_libdir}/ocaml/netcgi2/*.a
-%{_libdir}/ocaml/netcgi2/*.cmxa
-%{_libdir}/ocaml/netcgi2-plex/*.a
-%{_libdir}/ocaml/netcgi2-plex/*.cmxa
-%endif
-%{_examplesdir}/%{name}-netcgi-%{version}
-
-%if %{with apache}
-%files -n apache-mod_netcgi
-%defattr(644,root,root,755)
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_apachesysconfdir}/*_mod_netcgi.conf
-%attr(755,root,root) %{_apachepkglibdir}/mod_netcgi.so
-%endif
-
 %files equeue
 %defattr(644,root,root,755)
 %dir %{_libdir}/ocaml/equeue
@@ -925,6 +893,38 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/ocaml/netcamlbox/*.cmxa
 %endif
 %{_examplesdir}/%{name}-netcamlbox-%{version}
+
+%files netcgi
+%defattr(644,root,root,755)
+%dir %{_libdir}/ocaml/netcgi2
+%{_libdir}/ocaml/netcgi2/META
+%{_libdir}/ocaml/netcgi2/*.cma
+%dir %{_libdir}/ocaml/netcgi2-plex
+%{_libdir}/ocaml/netcgi2-plex/META
+%{_libdir}/ocaml/netcgi2-plex/*.cma
+%if %{with ocaml_opt}
+%attr(755,root,root) %{_libdir}/ocaml/netcgi2/*.cmxs
+%attr(755,root,root) %{_libdir}/ocaml/netcgi2-plex/*.cmxs
+%endif
+
+%files netcgi-devel
+%defattr(644,root,root,755)
+%{_libdir}/ocaml/netcgi2/*.cmi
+%{_libdir}/ocaml/netcgi2-plex/*.cmi
+%if %{with ocaml_opt}
+%{_libdir}/ocaml/netcgi2/*.a
+%{_libdir}/ocaml/netcgi2/*.cmxa
+%{_libdir}/ocaml/netcgi2-plex/*.a
+%{_libdir}/ocaml/netcgi2-plex/*.cmxa
+%endif
+%{_examplesdir}/%{name}-netcgi-%{version}
+
+%if %{with apache}
+%files -n apache-mod_netcgi
+%defattr(644,root,root,755)
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_apachesysconfdir}/*_mod_netcgi.conf
+%attr(755,root,root) %{_apachepkglibdir}/mod_netcgi.so
+%endif
 
 %files netclient
 %defattr(644,root,root,755)
