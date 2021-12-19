@@ -86,6 +86,7 @@ Summary:	Event queue library for OCaml - development part
 Summary(pl.UTF-8):	Biblioteka obsługująca kolejkę zdarzeń dla OCamla - część programistyczna
 License:	BSD-like
 Group:		Development/Libraries
+Requires:	%{name}-equeue = %{version}-%{release}
 Requires:	%{name}-netsys-devel = %{version}-%{release}
 %requires_eq	ocaml
 Obsoletes:	ocaml-equeue-devel < 2.2
@@ -126,6 +127,7 @@ Summary(pl.UTF-8):	Biblioteka obsługująca kolejkę zdarzeń GTK2 dla OCamla - 
 License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-equeue-devel = %{version}-%{release}
+Requires:	%{name}-equeue-gtk2 = %{version}-%{release}
 Requires:	ocaml-lablgtk2-devel
 %requires_eq	ocaml
 
@@ -219,6 +221,7 @@ Summary:	Fast IPC mechanism for OCaml - development part
 Summary(pl.UTF-8):	Szybki mechanizm IPC dla OCamla - część programistyczna
 License:	BSD-like
 Group:		Development/Libraries
+Requires:	%{name}-netcamlbox = %{version}-%{release}
 Requires:	%{name}-netsys-devel = %{version}-%{release}
 %requires_eq	ocaml
 
@@ -262,6 +265,7 @@ Summary:	Common Gateway Interface library - development part
 Summary(pl.UTF-8):	Biblioteka do tworzenia skryptów CGI - część programistyczna
 License:	BSD-like
 Group:		Development/Libraries
+Requires:	%{name}-netcgi = %{version}-%{release}
 Requires:	%{name}-netplex-devel = %{version}-%{release}
 Requires:	%{name}-netstring-devel = %{version}-%{release}
 Requires:	%{name}-netsys-devel = %{version}-%{release}
@@ -318,6 +322,7 @@ Summary(pl.UTF-8):	Klient HTTP 1.1 dla OCamla - część programistyczna
 License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-equeue-devel = %{version}-%{release}
+Requires:	%{name}-netclient = %{version}-%{release}
 Requires:	%{name}-netstring-devel = %{version}-%{release}
 %requires_eq	ocaml
 Obsoletes:	ocaml-netclient-devel < 1
@@ -365,7 +370,7 @@ Summary:	GSS-API generic definition - development part
 Summary(pl.UTF-8):	Biblioteka do obsługi protokołu GSSAPI - część programistyczna
 License:	GPL v2+
 Group:		Development/Libraries
-Requires:	%{name}-netgss-system-devel = %{version}-%{release}
+Requires:	%{name}-netgss-system = %{version}-%{release}
 Requires:	%{name}-netstring-devel = %{version}-%{release}
 Requires:	%{name}-netsys-devel = %{version}-%{release}
 %requires_eq	ocaml
@@ -400,6 +405,7 @@ License:	GPL v2+
 Group:		Development/Libraries
 Requires:	%{name}-equeue-devel = %{version}-%{release}
 Requires:	%{name}-netcgi-devel = %{version}-%{release}
+Requires:	%{name}-nethttpd = %{version}-%{release}
 Requires:	%{name}-netplex-devel = %{version}-%{release}
 %requires_eq	ocaml-pcre-devel
 %requires_eq	ocaml
@@ -434,6 +440,7 @@ Summary(pl.UTF-8):	Obsługa wieloprocesorowych obliczeń - część programistyc
 License:	GPL v2+
 Group:		Development/Libraries
 Requires:	%{name}-netcamlbox-devel = %{version}-%{release}
+Requires:	%{name}-netmulticore = %{version}-%{release}
 Requires:	%{name}-netplex-devel = %{version}-%{release}
 %requires_eq	ocaml
 
@@ -509,6 +516,7 @@ Summary:	Shared memory support - development package
 Summary(pl.UTF-8):	Obsługa pamięci dzielonej - pakiet programistyczny
 License:	BSD-like
 Group:		Development/Libraries
+Requires:	%{name}-netshm = %{version}-%{release}
 Requires:	%{name}-netsys-devel = %{version}-%{release}
 %requires_eq	ocaml
 
@@ -617,6 +625,7 @@ Summary(pl.UTF-8):	Tablice wyszukiwania Unicode - część programistyczna
 License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-netstring-devel = %{version}-%{release}
+Requires:	%{name}-netunidata = %{version}-%{release}
 %requires_eq	ocaml
 
 %description netunidata-devel
@@ -651,6 +660,7 @@ Summary(pl.UTF-8):	Funkcje do kompresji kanałów - cześć programistyczna
 License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-netstring-devel = %{version}-%{release}
+Requires:	%{name}-netzip = %{version}-%{release}
 %requires_eq	ocaml
 
 %description netzip-devel
@@ -719,6 +729,7 @@ License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-equeue-devel = %{version}-%{release}
 Requires:	%{name}-netsys-devel = %{version}-%{release}
+Requires:	%{name}-shell = %{version}-%{release}
 %requires_eq	ocaml
 
 %description shell-devel
