@@ -72,6 +72,7 @@ Group:		Libraries
 License:	BSD-like
 %requires_eq	ocaml-runtime
 Conflicts:	ocaml-net-equeue-devel < 4.1.9-1
+Obsoletes:	ocaml-net-equeue-ssl < 4
 
 %description equeue
 Equeue provides a generic event queue module, and a specific module
@@ -90,6 +91,7 @@ Requires:	%{name}-equeue = %{version}-%{release}
 Requires:	%{name}-netsys-devel = %{version}-%{release}
 %requires_eq	ocaml
 Obsoletes:	ocaml-equeue-devel < 2.2
+Obsoletes:	ocaml-net-equeue-ssl-devel < 4
 
 %description equeue-devel
 Equeue provides a generic event queue module, and a specific module
@@ -130,6 +132,7 @@ Requires:	%{name}-equeue-devel = %{version}-%{release}
 Requires:	%{name}-equeue-gtk2 = %{version}-%{release}
 Requires:	ocaml-lablgtk2-devel
 %requires_eq	ocaml
+Obsoletes:	ocaml-net-equeue-gtk-devel < 3.7.7
 
 %description equeue-gtk2-devel
 Equeue provides a generic event queue module, and a specific module
@@ -325,6 +328,8 @@ Requires:	%{name}-equeue-devel = %{version}-%{release}
 Requires:	%{name}-netclient = %{version}-%{release}
 Requires:	%{name}-netstring-devel = %{version}-%{release}
 %requires_eq	ocaml
+Obsoletes:	ocaml-net-pop3-devel < 4
+Obsoletes:	ocaml-net-smtp-devel < 4
 Obsoletes:	ocaml-netclient-devel < 1
 
 %description netclient-devel
@@ -556,6 +561,7 @@ Requires:	%{name}-netstring = %{version}-%{release}
 Requires:	%{name}-netsys-devel = %{version}-%{release}
 %requires_eq	ocaml
 %requires_eq	ocaml-pcre-devel
+Obsoletes:	ocaml-net-netmech-scram-devel < 4.1
 
 %description netstring-devel
 String processing library, part of Ocamlnet. This package contains
