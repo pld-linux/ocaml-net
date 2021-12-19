@@ -803,9 +803,6 @@ EOF
 # useless in rpm
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/ocaml/stublibs/*.so.owner
 
-# not sure about *.o
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/ocaml/*/*.mli
-
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-{netcgi,equeue,netcamlbox,netmulticore,netclient,nethttpd,rpc}-%{version}
 cp -pr examples/camlbox/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-netcamlbox-%{version}
 cp -pr examples/cgi/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-netcgi-%{version}
@@ -834,6 +831,7 @@ rm -rf $RPM_BUILD_ROOT
 %files equeue-devel
 %defattr(644,root,root,755)
 %{_libdir}/ocaml/equeue/*.cmi
+%{_libdir}/ocaml/equeue/*.mli
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/equeue/*.a
 %{_libdir}/ocaml/equeue/*.cmxa
@@ -852,6 +850,7 @@ rm -rf $RPM_BUILD_ROOT
 %files equeue-gtk2-devel
 %defattr(644,root,root,755)
 %{_libdir}/ocaml/equeue-gtk2/*.cmi
+%{_libdir}/ocaml/equeue-gtk2/*.mli
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/equeue-gtk2/*.a
 %{_libdir}/ocaml/equeue-gtk2/*.cmxa
@@ -870,6 +869,7 @@ rm -rf $RPM_BUILD_ROOT
 %files equeue-tcl-devel
 %defattr(644,root,root,755)
 %{_libdir}/ocaml/equeue-tcl/*.cmi
+%{_libdir}/ocaml/equeue-tcl/*.mli
 %{_libdir}/ocaml/equeue-tcl/libequeue_tcl*.a
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/equeue-tcl/*.cmxa
@@ -888,6 +888,7 @@ rm -rf $RPM_BUILD_ROOT
 %files netcamlbox-devel
 %defattr(644,root,root,755)
 %{_libdir}/ocaml/netcamlbox/*.cmi
+%{_libdir}/ocaml/netcamlbox/*.mli
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/netcamlbox/*.a
 %{_libdir}/ocaml/netcamlbox/*.cmxa
@@ -910,7 +911,9 @@ rm -rf $RPM_BUILD_ROOT
 %files netcgi-devel
 %defattr(644,root,root,755)
 %{_libdir}/ocaml/netcgi2/*.cmi
+%{_libdir}/ocaml/netcgi2/*.mli
 %{_libdir}/ocaml/netcgi2-plex/*.cmi
+%{_libdir}/ocaml/netcgi2-plex/*.mli
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/netcgi2/*.a
 %{_libdir}/ocaml/netcgi2/*.cmxa
@@ -938,6 +941,7 @@ rm -rf $RPM_BUILD_ROOT
 %files netclient-devel
 %defattr(644,root,root,755)
 %{_libdir}/ocaml/netclient/*.cmi
+%{_libdir}/ocaml/netclient/*.mli
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/netclient/*.a
 %{_libdir}/ocaml/netclient/*.cmxa
@@ -957,6 +961,7 @@ rm -rf $RPM_BUILD_ROOT
 %files netgss-system-devel
 %defattr(644,root,root,755)
 %{_libdir}/ocaml/netgss-system/*.cmi
+%{_libdir}/ocaml/netgss-system/*.mli
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/netgss-system/*.cmxa
 %{_libdir}/ocaml/netgss-system/netgss-system*.a
@@ -975,6 +980,7 @@ rm -rf $RPM_BUILD_ROOT
 %files nethttpd-devel
 %defattr(644,root,root,755)
 %{_libdir}/ocaml/nethttpd/*.cmi
+%{_libdir}/ocaml/nethttpd/*.mli
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/nethttpd/*.a
 %{_libdir}/ocaml/nethttpd/*.cmxa
@@ -993,6 +999,7 @@ rm -rf $RPM_BUILD_ROOT
 %files netmulticore-devel
 %defattr(644,root,root,755)
 %{_libdir}/ocaml/netmulticore/*.cmi
+%{_libdir}/ocaml/netmulticore/*.mli
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/netmulticore/*.a
 %{_libdir}/ocaml/netmulticore/*.cmxa
@@ -1014,6 +1021,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/ocaml/netplex/netplex-packlist
 %{_libdir}/ocaml/netplex/*.cmi
 %{_libdir}/ocaml/netplex/*.cmo
+%{_libdir}/ocaml/netplex/*.mli
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/netplex/*.a
 %{_libdir}/ocaml/netplex/*.cmx
@@ -1033,6 +1041,7 @@ rm -rf $RPM_BUILD_ROOT
 %files netshm-devel
 %defattr(644,root,root,755)
 %{_libdir}/ocaml/netshm/*.cmi
+%{_libdir}/ocaml/netshm/*.mli
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/netshm/*.a
 %{_libdir}/ocaml/netshm/*.cmxa
@@ -1052,6 +1061,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/ocaml/netstring/*.cmi
 %{_libdir}/ocaml/netstring/*.cmo
+%{_libdir}/ocaml/netstring/*.mli
 %{_libdir}/ocaml/netstring/libnetaccel_c.a
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/netstring/*.cmx
@@ -1074,6 +1084,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/ocaml/netsys/*.cmi
 %{_libdir}/ocaml/netsys/*.cmo
+%{_libdir}/ocaml/netsys/*.mli
 %{_libdir}/ocaml/netsys/libnetsys*.a
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/netsys/*.cmx
@@ -1098,6 +1109,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/ocaml/netunidata/*.cmi
 %{_libdir}/ocaml/netunidata/*.cmo
+%{_libdir}/ocaml/netunidata/*.mli
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/netunidata/*.a
 %{_libdir}/ocaml/netunidata/*.cmx
@@ -1117,6 +1129,7 @@ rm -rf $RPM_BUILD_ROOT
 %files netzip-devel
 %defattr(644,root,root,755)
 %{_libdir}/ocaml/netzip/*.cmi
+%{_libdir}/ocaml/netzip/*.mli
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/netzip/*.a
 %{_libdir}/ocaml/netzip/*.cmxa
@@ -1144,10 +1157,13 @@ rm -rf $RPM_BUILD_ROOT
 %files rpc-devel
 %defattr(644,root,root,755)
 %{_libdir}/ocaml/rpc/*.cmi
-%{_libdir}/ocaml/rpc-auth-local/*.cmi
+%{_libdir}/ocaml/rpc/*.mli
 %{_libdir}/ocaml/rpc-auth-local/librpc_auth_local*.a
+%{_libdir}/ocaml/rpc-auth-local/*.cmi
+%{_libdir}/ocaml/rpc-auth-local/*.mli
 %{_libdir}/ocaml/rpc-generator/rpcgen-packlist
 %{_libdir}/ocaml/rpc-generator/*.cmi
+%{_libdir}/ocaml/rpc-generator/*.mli
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/rpc/rpc*.a
 %{_libdir}/ocaml/rpc/rpc*.cmxa
@@ -1170,6 +1186,7 @@ rm -rf $RPM_BUILD_ROOT
 %files shell-devel
 %defattr(644,root,root,755)
 %{_libdir}/ocaml/shell/*.cmi
+%{_libdir}/ocaml/shell/*.mli
 %if %{with ocaml_opt}
 %{_libdir}/ocaml/shell/*.a
 %{_libdir}/ocaml/shell/*.cmxa
