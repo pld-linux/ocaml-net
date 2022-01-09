@@ -173,7 +173,7 @@ używających biblioteki equeue-tcl.
 
 %package equeue-tcl-devel
 Summary:	Equeue Tcl support - development part
-Summary(pl.UTF-8):	Wsparcie dla Tcl-a w equeue - cześć programistyczna
+Summary(pl.UTF-8):	Wsparcie dla Tcl-a w equeue - część programistyczna
 License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-equeue-devel = %{version}-%{release}
@@ -480,7 +480,7 @@ używających biblioteki netplex.
 
 %package netplex-devel
 Summary:	Server framework - development part
-Summary(pl.UTF-8):	Szkielet serwerowy - cześć programistyczna
+Summary(pl.UTF-8):	Szkielet serwerowy - część programistyczna
 License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-equeue-devel = %{version}-%{release}
@@ -593,7 +593,7 @@ używających biblioteki netsys.
 
 %package netsys-devel
 Summary:	OS-specific functions - development part
-Summary(pl.UTF-8):	Funkcje specyficzne dla systemu operacyjnego - cześć programistyczna
+Summary(pl.UTF-8):	Funkcje specyficzne dla systemu operacyjnego - część programistyczna
 License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-netsys = %{version}-%{release}
@@ -662,7 +662,7 @@ Funkcje do kompresji kanałów.
 
 %package netzip-devel
 Summary:	Gzip channels - development part
-Summary(pl.UTF-8):	Funkcje do kompresji kanałów - cześć programistyczna
+Summary(pl.UTF-8):	Funkcje do kompresji kanałów - część programistyczna
 License:	BSD-like
 Group:		Development/Libraries
 Requires:	%{name}-netstring-devel = %{version}-%{release}
