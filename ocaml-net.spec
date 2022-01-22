@@ -14,7 +14,7 @@ Summary:	Modules for Internet programming in OCaml
 Summary(pl.UTF-8):	Moduły ułatwiające pisanie programów internetowych w OCamlu
 Name:		ocaml-net
 Version:	4.1.9
-Release:	1
+Release:	2
 License:	GPL v2+ (nethttpd), LGPL v2+ (mod_netcgi), BSD-like (the rest)
 Group:		Libraries
 Source0:	http://download.camlcity.org/download/ocamlnet-%{version}.tar.gz
