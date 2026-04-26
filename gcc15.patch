@@ -1,0 +1,25 @@
+--- ocamlnet-4.1.9/configure~	2026-04-26 02:30:13.000000000 +0200
++++ ocamlnet-4.1.9/configure	2026-04-26 02:45:44.833341071 +0200
+@@ -829,7 +829,8 @@
+     cat <<EOF >tmp/t.c
+ #include "tcl.h"
+ 
+-main () {
++int main () {
++return 0;
+ }
+ EOF
+ 
+@@ -850,10 +850,10 @@
+ #include <stdio.h>
+ #include "tcl.h"
+ 
+-do_something () {
++int do_something () {
+     void (*x)(int);
+     x = Tcl_Exit;
+-    exit(0);
++    return 0;
+ }
+ EOF
+ 
